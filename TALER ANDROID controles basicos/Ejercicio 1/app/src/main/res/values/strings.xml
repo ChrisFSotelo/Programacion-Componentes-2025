@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Conversion_de_numeros</string>
+    <string name="title_activity">Conversion de numeros</string>
+    <string name="sub_text">Ingrese un numero Entero</string>
+    <string name="binary">Binario</string>
+    <string name="octal">Octal</string>
+    <string name="hexadecimal">Hexadecimal</string>
+    <string name="button_convert">Convertir</string>
+
+</resources>
