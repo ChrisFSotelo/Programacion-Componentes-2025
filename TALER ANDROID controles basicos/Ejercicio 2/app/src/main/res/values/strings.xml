@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ejercicio2</string>
+    <string name="main_title">Bienvenido: Casa de cambio de monedas</string>
+    <string name="monto_a_cambiar">Ingrese monto a cambiar</string>
+    <string name="convert_title">Convertir a:</string>
+    <string name="convert_button">Convertir"</string>
+</resources>
