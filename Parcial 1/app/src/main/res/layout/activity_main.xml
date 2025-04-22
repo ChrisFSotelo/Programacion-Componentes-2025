@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8A05BE "
+    android:background="#820AD1"
     android:padding="24dp">
 
     <!-- Logo -->
@@ -59,6 +59,7 @@
         android:hint="3123456789"
         android:inputType="phone"
         android:padding="10dp"
+        android:radius="30dp"
         android:textColor="#000000"
         android:textColorHint="#888888"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,12 +72,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="#000000"
-        android:text="Ingresar"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phoneInput" />
+        android:background="@drawable/btn_background"
+    android:text="Ingresar"
+    android:textColor="#000000"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/phoneInput" />
+
+
 
     <!-- Separador con "o" -->
     <TextView
@@ -97,7 +100,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@android:color/white"
+        android:background="@drawable/btn_background"
         android:padding="10dp"
         android:text="Regístrate"
         android:textColor="#000000"
