@@ -23,13 +23,8 @@ class PasswordActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.etPassword)
         ivTogglePassword = findViewById(R.id.ivTogglePassword)
         btnContinue = findViewById(R.id.btnContinue)
-        val phoneNumber = intent.getStringExtra("PHONE")
-//DEBUG PARA EL NUMERO TELEFONICO RECIBIDO
-//        if (phoneNumber != null) {
-//            Log.d("PasswordActivity", "Número recibido: $phoneNumber")
-//        } else {
-//            Log.e("PasswordActivity", "No se recibió el número")
-//        }
+
+        val phoneNumber = intent.getStringExtra("PHONE_NUMBER") ?: ""
 
         // Toggle para mostrar/ocultar contraseña
         ivTogglePassword.setOnClickListener {
@@ -39,13 +34,31 @@ class PasswordActivity : AppCompatActivity() {
         // Continuar
         btnContinue.setOnClickListener {
             val password = etPassword.text.toString()
+            val phoneNumber = intent.getStringExtra("PHONE_NUMBER") ?: ""
+
+            //DEBUG PARA EL NUMERO TELEFONICO RECIBIDO
+//            Log.d("DEBUG", "Teléfono recibido: $phoneNumber")
+//            Log.d("DEBUG", "Contraseña ingresada: $password")
+
+            // Validación básica de contraseña
             if (password.length < 8) {
                 Toast.makeText(this, "La contraseña debe tener al menos 8 caracteres", Toast.LENGTH_SHORT).show()
-            } else {
-                // Aquí puedes continuar a la siguiente pantalla o guardar la contraseña
-                Toast.makeText(this, "Contraseña válida", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            // Validación contra los datos estáticos
+            if (phoneNumber != STATIC_PHONE || password != STATIC_PASSWORD) {
+                Toast.makeText(this, "Número o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Si todo es correcto
+            Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+
+            // Aquí puedes redirigir al usuario
+            // startActivity(Intent(this, HomeActivity::class.java))
         }
+
 
         // Botón de retroceso
         findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
@@ -64,4 +77,12 @@ class PasswordActivity : AppCompatActivity() {
         etPassword.setSelection(etPassword.text.length) // Mantener el cursor al final
         isPasswordVisible = !isPasswordVisible
     }
+
+    companion object {
+        const val STATIC_PHONE = "3246194520"
+        const val STATIC_PASSWORD = "udistrital"
+    }
+
 }
+
+

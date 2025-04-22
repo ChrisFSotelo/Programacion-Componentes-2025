@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                     return
                 }
                 val intent = Intent(this, PasswordActivity::class.java)
-                intent.putExtra("PHONE", phoneNumber)
+                intent.putExtra("PHONE_NUMBER", phoneNumber)
                 startActivity(intent)
             }
 
