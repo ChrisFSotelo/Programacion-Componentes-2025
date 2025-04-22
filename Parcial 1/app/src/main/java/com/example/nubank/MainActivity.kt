@@ -1,6 +1,7 @@
 package com.example.nubank
 
 import LoginAction
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -35,8 +36,9 @@ class MainActivity : AppCompatActivity() {
                     handleLoginAction(LoginAction.REGISTRARSE, phoneNumber)
                     return
                 }
-                // Si hay número, ir a la página de contraseña
-                setContentView(R.layout.password_page)
+                val intent = Intent(this, PasswordActivity::class.java)
+                intent.putExtra("PHONE", phoneNumber)
+                startActivity(intent)
             }
 
             LoginAction.REGISTRARSE -> {

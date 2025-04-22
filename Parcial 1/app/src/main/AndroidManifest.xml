@@ -16,6 +16,7 @@
             android:name=".composables.LoginScreen"
             android:exported="false"
             android:theme="@style/Theme.NuBank" />
+        <activity android:name=".PasswordActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >
