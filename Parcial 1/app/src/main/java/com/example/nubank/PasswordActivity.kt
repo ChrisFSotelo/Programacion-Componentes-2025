@@ -1,5 +1,6 @@
 package com.example.nubank
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -56,7 +57,7 @@ class PasswordActivity : AppCompatActivity() {
             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
 
             // Aquí puedes redirigir al usuario
-            // startActivity(Intent(this, HomeActivity::class.java))
+             startActivity(Intent(this, HomeActivity::class.java))
         }
 
 

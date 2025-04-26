@@ -12,7 +12,7 @@
         <!-- CONTENEDOR 1: Toolbar + Sección Morada -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="169dp"
             android:background="#9C27B0"
             android:orientation="vertical"
             android:padding="16dp">
@@ -21,38 +21,36 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:justifyContent="space-between">
+                android:orientation="horizontal">
 
                 <!-- Imagen circular -->
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_profile"
-                    android:scaleType="centerCrop"
                     android:background="@drawable/circle_background"
                     android:padding="2dp"
-                />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="end">
+                    android:gravity="end"
+                    android:orientation="horizontal">
 
                     <!-- Botón de ayuda -->
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_help"
-                        android:layout_marginEnd="16dp"/>
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_help" />
 
                     <!-- Botón de usuario -->
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_user"/>
+                        android:src="@drawable/ic_user" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -61,129 +59,141 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Envía dinero al instante con tus llaves"
-                android:backgroundTint="#FFFFFF"
-                android:textColor="#9C27B0"
                 android:layout_marginTop="16dp"
+                android:backgroundTint="#FFFFFF"
                 android:drawableStart="@drawable/ic_send"
-                android:padding="10dp"
                 android:gravity="center_vertical"
-                android:textSize="14sp"/>
+                android:padding="10dp"
+                android:text="Envía dinero al instante con tus llaves"
+                android:textColor="#9C27B0"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- CONTENEDOR 2: Cuenta de ahorros -->
+
+        <!-- CONTENEDOR 3: Descubre más -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="339dp"
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Datos de cuenta -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cuenta de ahorros"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="$ 0,00"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginTop="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ingrese tu contraseña de al menos 8..."
-                android:textSize="12sp"
-                android:layout_marginTop="2dp"
-                android:textColor="#757575"/>
-
-            <!-- Botones de acción -->
+            <!-- Contenedor interno -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="12dp"
-                android:weightSum="3">
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <!-- Datos de cuenta -->
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:text="Cuenta de ahorros"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp" />
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_deposit"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="$ 0,00"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="Ingrese tu contraseña de al menos 8..."
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+                <!-- Botones de acción -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <!-- Botón 1 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Depositar"
-                        android:textSize="12sp"
-                        android:layout_marginTop="4dp"/>
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_deposit" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Depositar"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Botón 2 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_send" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Enviar"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Botón 3 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_key" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Tus llaves"
+                            android:textSize="12sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_send"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Enviar"
-                        android:textSize="12sp"
-                        android:layout_marginTop="4dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_key"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tus llaves"
-                        android:textSize="12sp"
-                        android:layout_marginTop="4dp"/>
-                </LinearLayout>
             </LinearLayout>
 
-            <!-- Buscador -->
+            <!-- Buscador abajo -->
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Detalles de mi cuenta"
-                android:background="@drawable/rounded_edittext"
-                android:drawableStart="@drawable/ic_search"
-                android:padding="12dp"
-                android:layout_marginTop="16dp"/>
+                android:padding="12dp" />
         </LinearLayout>
 
-        <!-- CONTENEDOR 3: Descubre más -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -202,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:columnCount="2"
-                android:rowCount="auto">
+                android:rowCount="1">
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -226,8 +236,7 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/product_image1"
-                                android:background="@drawable/rounded_image"/>
+                                />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -260,8 +269,7 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/product_image1"
-                                android:background="@drawable/rounded_image"/>
+                                />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -293,8 +301,7 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/product_image1"
-                                android:background="@drawable/rounded_image"/>
+                                />
 
                             <TextView
                                 android:layout_width="wrap_content"
