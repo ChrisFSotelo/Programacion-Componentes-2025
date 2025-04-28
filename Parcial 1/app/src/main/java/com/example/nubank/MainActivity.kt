@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +31,6 @@ class MainActivity : AppCompatActivity() {
             LoginAction.INGRESAR -> {
                 if (phoneNumber.isEmpty()) {
                     Toast.makeText(this, "Número vacío, redirigiendo a registro...", Toast.LENGTH_SHORT).show()
-                    // Simular que el usuario eligió registrarse
                     handleLoginAction(LoginAction.REGISTRARSE, phoneNumber)
                     return
                 }
@@ -43,12 +41,10 @@ class MainActivity : AppCompatActivity() {
 
             LoginAction.REGISTRARSE -> {
                 Toast.makeText(this, "Redirigiendo a registro...", Toast.LENGTH_SHORT).show()
-                // Aquí podrías cargar el layout de registro o ir a otra activity
-                // setContentView(R.layout.register_page)
-                // o
-                // startActivity(Intent(this, RegistroActivity::class.java))
+                val intent = Intent(this, UserActivity::class.java) // <-- Aquí redirigimos a UserActivity
+                startActivity(intent)
             }
         }
     }
-
 }
+

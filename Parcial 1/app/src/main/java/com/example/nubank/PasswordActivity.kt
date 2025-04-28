@@ -1,5 +1,6 @@
 package com.example.nubank
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -25,45 +26,36 @@ class PasswordActivity : AppCompatActivity() {
         ivTogglePassword = findViewById(R.id.ivTogglePassword)
         btnContinue = findViewById(R.id.btnContinue)
 
-        val phoneNumber = intent.getStringExtra("PHONE_NUMBER") ?: ""
+        val inputPhoneNumber = intent.getStringExtra("PHONE_NUMBER") ?: ""
 
-        // Toggle para mostrar/ocultar contraseña
         ivTogglePassword.setOnClickListener {
             togglePasswordVisibility()
         }
 
-        // Continuar
         btnContinue.setOnClickListener {
-            val password = etPassword.text.toString()
-            val phoneNumber = intent.getStringExtra("PHONE_NUMBER") ?: ""
-
-            //DEBUG PARA EL NUMERO TELEFONICO RECIBIDO
-//            Log.d("DEBUG", "Teléfono recibido: $phoneNumber")
-//            Log.d("DEBUG", "Contraseña ingresada: $password")
+            val inputPassword = etPassword.text.toString()
 
             // Validación básica de contraseña
-            if (password.length < 8) {
+            if (inputPassword.length < 8) {
                 Toast.makeText(this, "La contraseña debe tener al menos 8 caracteres", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Validación contra los datos estáticos
-            if (phoneNumber != STATIC_PHONE || password != STATIC_PASSWORD) {
+            // Leer los datos almacenados en SharedPreferences
+            val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+            val savedPhone = sharedPreferences.getString("phone", "")
+            val savedPassword = sharedPreferences.getString("password", "")
+
+            if (inputPhoneNumber == savedPhone && inputPassword == savedPassword) {
+                Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, HomeActivity::class.java))
+            } else {
                 Toast.makeText(this, "Número o contraseña incorrectos", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
             }
-
-            // Si todo es correcto
-            Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-
-            // Aquí puedes redirigir al usuario
-             startActivity(Intent(this, HomeActivity::class.java))
         }
 
-
-        // Botón de retroceso
         findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
-            finish() // Cierra esta actividad y regresa
+            finish()
         }
     }
 
@@ -75,15 +67,9 @@ class PasswordActivity : AppCompatActivity() {
             etPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             ivTogglePassword.setImageResource(R.drawable.ic_eye_open)
         }
-        etPassword.setSelection(etPassword.text.length) // Mantener el cursor al final
+        etPassword.setSelection(etPassword.text.length)
         isPasswordVisible = !isPasswordVisible
     }
-
-    companion object {
-        const val STATIC_PHONE = "3246194520"
-        const val STATIC_PASSWORD = "udistrital"
-    }
-
 }
 
 

@@ -17,5 +17,12 @@
     <string name="second_fragment_label">Segundo Fragmento</string>
     <string name="first_fragment_label">Primer Fragmento</string>
     <string name="back" />
+    <string name="registra_tus_datos_personales">Registra tus datos Personales</string>
+    <string name="e_mail">E-mail</string>
+    <string name="nombres">Nombres</string>
+    <string name="cedula_de_ciudadan_a">Cedula de ciudadanía</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="next">Next</string>
+    <string name="tel_fono">Teléfono</string>
 
 </resources>
