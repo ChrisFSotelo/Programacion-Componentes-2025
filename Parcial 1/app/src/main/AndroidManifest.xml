@@ -16,6 +16,7 @@
         <activity android:name=".PasswordActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".DetallesCuentaActivity" />
+        <activity android:name=".SavingAccountBottomSheet" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >
