@@ -31,7 +31,7 @@ class UserActivity : AppCompatActivity() {
         nextButton = findViewById(R.id.next_button)
         passwordEditText = findViewById(R.id.password)
 
-        // Botón de acción (puedes personalizar su acción)
+        // Botón de acción
         nextButton.setOnClickListener {
             crearUsuario()
         }
