@@ -24,5 +24,32 @@
     <string name="apellidos">Apellidos</string>
     <string name="next">Next</string>
     <string name="tel_fono">Teléfono</string>
-
+    <string name="detalles_de_mi_cuenta">Detalles de mi cuenta</string>
+    <string name="nombre_del_usuario">Nombre del usuario</string>
+    <string name="mi_nu_placa">Mi Nu placa</string>
+    <string name="cuota_valor">$0</string>
+    <string name="cuenta_libre_del_4x1000">Cuenta libre del 4x1000</string>
+    <string name="si">si</string>
+    <string name="cuota_de_manejo">Cuota de manejo</string>
+    <string name="impuestos">Impuestos</string>
+    <string name="transferencia_a_otros_bancos">Transferencia a otros bancos</string>
+    <string name="detalles">Detalles</string>
+    <string name="tarifas">Tarifas</string>
+    <string name="compartir">Compartir</string>
+    <string name="copiar">Copiar</string>
+    <string name="c_dula_de_ciudadan_a">Cédula de ciudadanía</string>
+    <string name="n_mero_de_cuenta">Número de cuenta</string>
+    <string name="todo">TODO</string>
+    <string name="transfer_valor">$0</string>
+    <string name="retiros_en_cajero">Retiros en cajeros</string>
+    <string name="valor_retiro">$6.800,00</string>
+    <string name="info_paragraph_1">
+        Cuando tu cuenta Nu está exenta del impuesto 4x1000, puedes realizar movimientos de salida de dinero de hasta $17,429,650 COP sin que se te cobre dicho impuesto. Si esta es tu cuenta principal, te recomendamos mantener este beneficio para aprovecharlo al máximo.
+    </string>
+    <string name="info_paragraph_2">
+        Recuerda que el 4x1000 es un impuesto que el gobierno cobra sobre cualquier movimiento de salida de dinero, como transferencias, compras, pagos y retiros. Puedes liberar tu cuenta justo aquí.
+    </string>
+    <string name="info_paragraph_3">
+        Ahora bien, si por algún motivo necesitas desmarcar tu cuenta Nu del beneficio, puedes hacerlo a través del chat, donde uno de nuestros Xpeers te apoyará con tu solicitud.
+    </string>
 </resources>
