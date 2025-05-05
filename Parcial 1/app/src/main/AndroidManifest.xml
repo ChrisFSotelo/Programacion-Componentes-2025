@@ -17,6 +17,8 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".DetallesCuentaActivity" />
         <activity android:name=".SavingAccountBottomSheet" />
+        <activity android:name=".InviteScreenActivity" />
+        <activity android:name=".MovimientosActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >

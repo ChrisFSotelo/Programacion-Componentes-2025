@@ -17,7 +17,14 @@ class UserActivity : AppCompatActivity() {
     private lateinit var nextButton: ImageButton
     private lateinit var passwordEditText: EditText // nuevo campo
 
-
+    data class Usuario(
+        val firstName: String,
+        val lastName: String,
+        val idNumber: String,
+        val email: String,
+        val phone: String,
+        val password: String
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.new_user) // Asegúrate que este nombre coincida con tu XML
@@ -52,6 +59,13 @@ class UserActivity : AppCompatActivity() {
             return
         }
 
+        val placa = (1..3)
+            .map { ('A'..'Z').random() }
+            .joinToString("") + (100..999).random()
+
+        // Generar número de cuenta aleatorio de 8 dígitos
+        val numeroCuenta = (10000000..99999999).random().toString()
+
         // Guardar en SharedPreferences
         val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
         val editor = sharedPref.edit()
@@ -60,7 +74,9 @@ class UserActivity : AppCompatActivity() {
         editor.putString("idNumber", idNumber)
         editor.putString("email", email)
         editor.putString("phone", phone)
-        editor.putString("password", password) // ahora guarda lo que el usuario escribe
+        editor.putString("password", password)
+        editor.putString("placa", placa)
+        editor.putString("cuenta", numeroCuenta)
         editor.apply()
 
         Toast.makeText(this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show()
@@ -68,4 +84,20 @@ class UserActivity : AppCompatActivity() {
         startActivity(Intent(this, MainActivity::class.java))
     }
 
+    private fun obtenerUsuario(): Usuario? {
+        val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val firstName = sharedPref.getString("firstName", null)
+        val lastName = sharedPref.getString("lastName", null)
+        val idNumber = sharedPref.getString("idNumber", null)
+        val email = sharedPref.getString("email", null)
+        val phone = sharedPref.getString("phone", null)
+        val password = sharedPref.getString("password", null)
+
+        return if (firstName != null && lastName != null && idNumber != null &&
+            email != null && phone != null && password != null) {
+            Usuario(firstName, lastName, idNumber, email, phone, password)
+        } else {
+            null
+        }
+    }
 }

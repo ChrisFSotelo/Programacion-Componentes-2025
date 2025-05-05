@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <!-- Header púrpura -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:id="@+id/backIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Cerrar"
+            android:src="@drawable/ic_arrow_back" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <!-- Ilustración -->
+
+    <!-- Texto principal -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:contentDescription="Ilustración"
+        android:src="@drawable/ic_details_image" />
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salva a alguien de las filas en bancos y costos ocultos"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:paddingHorizontal="24dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tvSubtitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="¿Cómo quieres invitar?"
+        android:textSize="14sp"
+        android:textColor="#888888"
+        android:paddingHorizontal="24dp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Lista de opciones -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Opción WhatsApp -->
+        <LinearLayout
+            android:id="@+id/whatsappOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:text="WhatsApp"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="Favorito"
+                android:textColor="#8000D7"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_arrow_forward" />
+        </LinearLayout>
+
+        <!-- Repite para QR, Email y Más opciones -->
+        <LinearLayout
+            android:id="@+id/qrOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_qr" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Mi codigo QR"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_forward"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+        <!-- Puedes duplicar y cambiar solo el texto y el ícono -->
+        <LinearLayout
+            android:id="@+id/emailOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_email" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:text="Email"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_arrow_forward" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

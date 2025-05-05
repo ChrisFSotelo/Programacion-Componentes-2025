@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- CONTENEDOR 1: Toolbar + Sección Morada -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="169dp"
@@ -23,7 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="8dp">
 
                 <!-- Imagen circular -->
                 <ImageView
@@ -34,27 +34,39 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_profile" />
 
+                <!-- Espaciador flexible -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="end">
 
                     <!-- Botón de ayuda -->
                     <ImageView
+                        android:id="@+id/btnVerMonto"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginEnd="16dp"
-                        android:src="@drawable/ic_help" />
+                        android:src="@drawable/ic_eye_closed" />
 
-                    <!-- Botón de usuario -->
+                    <!-- Botón de invitar usuario -->
                     <ImageView
+                        android:id="@+id/btnInvitarUsuario"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_user" />
+                        android:src="@drawable/ic_user_plus"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="Invitar usuario" />
                 </LinearLayout>
 
             </LinearLayout>
+
 
             <!-- Botón morado "Enviar dinero al instante" -->
             <Button
@@ -70,8 +82,6 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!-- CONTENEDOR 2: Cuenta de ahorros -->
-
         <!-- CONTENEDOR 3: Descubre más -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,30 +96,67 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <!-- Datos de cuenta -->
-                <TextView
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cuentaAhorros"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cuenta de ahorros"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp" />
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:text="$ 0,00"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    <!-- Contenido de texto alineado al inicio y espacio reservado para el icono -->
+                    <LinearLayout
+                        android:id="@+id/contenidoCuenta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/iconoFlecha"
+                        android:layout_marginEnd="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:text="Ingrese tu contraseña de al menos 8..."
-                    android:textColor="#757575"
-                    android:textSize="12sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cuenta de ahorros"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="10dp" />
+
+                        <TextView
+                            android:id="@+id/textMonto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="$ 0,00"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="El dinero de tus cajitas crece hasta 10,00% E.A"
+                            android:textColor="#757575"
+                            android:textSize="12sp"
+                            android:layout_marginBottom="4dp" />
+                    </LinearLayout>
+
+                    <!-- Icono alineado a la derecha y centrado verticalmente -->
+                    <ImageView
+                        android:id="@+id/iconoFlecha"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="Ver detalles"
+                        android:src="@drawable/ic_arrow_forward"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
                 <!-- Botones de acción -->
                 <LinearLayout
@@ -144,7 +191,7 @@
                     <!-- Botón 2 -->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="61dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -154,12 +201,6 @@
                             android:layout_height="40dp"
                             android:src="@drawable/ic_send" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Enviar"
-                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <!-- Botón 3 -->
@@ -195,7 +236,7 @@
                 android:textColor="#000000"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="8dp"
-                android:padding="12dp"
+                android:padding="18dp"
                 android:gravity="center_vertical"
                 android:textAlignment="viewStart"
                 android:layout_margin="8dp"
@@ -226,7 +267,7 @@
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="189dp"
+                    android:layout_height="309dp"
                     android:padding="16dp"
                     android:scrollbars="none">
 
@@ -237,36 +278,35 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="158dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="8dp">
 
                             <ImageView
-                                android:layout_width="100dp"
+                                android:layout_width="139dp"
                                 android:layout_height="100dp"
-                                android:scaleType="centerCrop"
-                                />
+                                android:scaleType="centerCrop" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Brand"
-                                android:textSize="12sp"
-                                android:layout_marginTop="4dp"/>
+                                android:layout_marginTop="4dp"
+                                android:text="Comparte Nu"
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Product name"
-                                android:textSize="14sp"/>
+                                android:text="Invita a alguien a vivir lo que mas te gusta de NU"
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="$10.99"
                                 android:textSize="14sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -278,29 +318,29 @@
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:scaleType="centerCrop"
-                                />
+                                android:scaleType="centerCrop" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
                                 android:text="Brand"
-                                android:textSize="12sp"
-                                android:layout_marginTop="4dp"/>
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Product name"
-                                android:textSize="14sp"/>
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="$10.99"
                                 android:textSize="14sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -310,28 +350,27 @@
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:scaleType="centerCrop"
-                                />
+                                android:scaleType="centerCrop" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
                                 android:text="Brand"
-                                android:textSize="12sp"
-                                android:layout_marginTop="4dp"/>
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Product name"
-                                android:textSize="14sp"/>
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="$10.99"
                                 android:textSize="14sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
                         </LinearLayout>
 
 

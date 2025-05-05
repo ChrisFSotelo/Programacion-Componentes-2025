@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:gravity="center_vertical">
+
+    <!-- Ícono -->
+    <ImageView
+        android:id="@+id/ivIcono"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_send"
+        android:background="@drawable/bg_action_button"
+        android:padding="8dp" />
+
+    <!-- Contenido -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviaste a Valentina"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 feb · 19:19"
+            android:textSize="13sp"
+            android:textColor="#666666" />
+    </LinearLayout>
+
+    <!-- Monto -->
+    <TextView
+        android:id="@+id/tvMonto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-$9.000,00"
+        android:textColor="#FF0000"
+        android:textStyle="bold"
+        android:textSize="14sp" />
+</LinearLayout>
