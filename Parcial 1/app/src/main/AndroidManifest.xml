@@ -19,6 +19,7 @@
         <activity android:name=".SavingAccountBottomSheet" />
         <activity android:name=".InviteScreenActivity" />
         <activity android:name=".MovimientosActivity" />
+        <activity android:name=".MovimientosAdapter" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >

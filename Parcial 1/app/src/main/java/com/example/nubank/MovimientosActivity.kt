@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.graphics.Color
+
 
 class MovimientosActivity : AppCompatActivity() {
 
@@ -44,5 +46,20 @@ class MovimientosActivity : AppCompatActivity() {
             val intent = Intent(this, DetallesCuentaActivity::class.java)
             startActivity(intent)
         }
+
+
+        val recyclerView: RecyclerView = findViewById(R.id.MovimientosLista)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val datosEjemplo = listOf(
+            MovimientosAdapter.Movimiento("Enviaste a Valentina", "12 feb · 19:19", "-$9.000,00", Color.RED, R.drawable.ic_send),
+            MovimientosAdapter.Movimiento("Recibiste de Juan", "11 feb · 10:00", "+$15.000,00", Color.parseColor("#008000"), R.drawable.ic_receive),
+            MovimientosAdapter.Movimiento("Recarga desde cuenta", "10 feb · 18:40", "+$20.000,00", Color.parseColor("#008000"), R.drawable.ic_topup)
+        )
+
+
+        val adapter = MovimientosAdapter(datosEjemplo)
+        recyclerView.adapter = adapter
+
     }
 }
