@@ -167,6 +167,17 @@
                 android:src="@drawable/ic_arrow_forward" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvMovimientos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movimientos"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:padding="20sp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:textColor="#000000" />
         <!-- Lista de movimientos -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/MovimientosLista"
