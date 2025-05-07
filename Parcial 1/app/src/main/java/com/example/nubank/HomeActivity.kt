@@ -1,10 +1,12 @@
 package com.example.nubank
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -13,6 +15,8 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var btnDetallesCuenta: Button
     private lateinit var btnCuentaAhorros: ConstraintLayout
+    private lateinit var btnCompartir: LinearLayout
+    private lateinit var btnFraude: LinearLayout
     private lateinit var btnInvitarUsuario: ImageView
     private lateinit var btnVerMonto: ImageView
     private lateinit var textMonto: TextView
@@ -27,6 +31,9 @@ class HomeActivity : AppCompatActivity() {
         btnDetallesCuenta = findViewById(R.id.btnDetallesCuenta)
         btnCuentaAhorros = findViewById(R.id.cuentaAhorros)
         btnInvitarUsuario = findViewById(R.id.btnInvitarUsuario)
+        btnCompartir = findViewById(R.id.btnCompartir)
+        btnFraude = findViewById(R.id.btnFraude)
+
 
         btnVerMonto = findViewById(R.id.btnVerMonto)
         textMonto = findViewById(R.id.textMonto)
@@ -46,6 +53,16 @@ class HomeActivity : AppCompatActivity() {
 
         btnInvitarUsuario.setOnClickListener {
             val intent = Intent(this, InviteScreenActivity::class.java)
+            startActivity(intent)
+        }
+        btnCompartir.setOnClickListener {
+            val intent = Intent(this, InviteScreenActivity::class.java)
+            startActivity(intent)
+        }
+        btnFraude.setOnClickListener {
+            val url = "https://blog.nu.com.co/ayuda/"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
             startActivity(intent)
         }
 

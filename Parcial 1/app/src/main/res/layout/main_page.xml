@@ -27,12 +27,15 @@
 
                 <!-- Imagen circular -->
                 <ImageView
+                    android:id="@+id/configuracionUsuario"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/circle_background"
                     android:padding="2dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_profile" />
+                    android:src="@drawable/ic_profile"
+                    android:clickable="true"
+                    android:focusable="true"/>
 
                 <!-- Espaciador flexible -->
                 <View
@@ -70,6 +73,7 @@
 
             <!-- Botón morado "Enviar dinero al instante" -->
             <Button
+                android:id="@+id/enviarDineroLlaves"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -85,7 +89,7 @@
         <!-- CONTENEDOR 3: Descubre más -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="339dp"
+            android:layout_height="421dp"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -96,35 +100,34 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/cuentaAhorros"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
-                    android:padding="16dp"
                     android:clickable="true"
                     android:focusable="true"
-                    xmlns:app="http://schemas.android.com/apk/res-auto">
+                    android:padding="16dp">
 
                     <!-- Contenido de texto alineado al inicio y espacio reservado para el icono -->
                     <LinearLayout
                         android:id="@+id/contenidoCuenta"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
                         android:orientation="vertical"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/iconoFlecha"
-                        android:layout_marginEnd="8dp">
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
                             android:text="Cuenta de ahorros"
                             android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:layout_marginBottom="10dp" />
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textMonto"
@@ -138,10 +141,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
                             android:text="El dinero de tus cajitas crece hasta 10,00% E.A"
                             android:textColor="#757575"
-                            android:textSize="12sp"
-                            android:layout_marginBottom="4dp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <!-- Icono alineado a la derecha y centrado verticalmente -->
@@ -151,18 +154,16 @@
                         android:layout_height="24dp"
                         android:contentDescription="Ver detalles"
                         android:src="@drawable/ic_arrow_forward"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-                <!-- Botones de acción -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="3">
@@ -176,14 +177,20 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/ic_deposit" />
+                            android:id="@+id/depositar"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/bg_action_button"
+                            android:padding="12dp"
+                            android:src="@drawable/ic_deposit"
+                            android:clickable="true"
+                            android:focusable="true"/>
+
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="2dp"
                             android:text="Depositar"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -191,16 +198,27 @@
                     <!-- Botón 2 -->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="61dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/ic_send" />
+                            android:id="@+id/enviar"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/bg_action_button"
+                            android:padding="12dp"
+                            android:src="@drawable/ic_send"
+                            android:clickable="true"
+                            android:focusable="true"/>
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Enviar"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <!-- Botón 3 -->
@@ -212,18 +230,24 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/ic_key" />
+                            android:id="@+id/tusLlaves"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/bg_action_button"
+                            android:padding="12dp"
+                            android:src="@drawable/ic_key"
+                            android:clickable="true"
+                            android:focusable="true"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="2dp"
                             android:text="Tus llaves"
                             android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
+
 
             </LinearLayout>
 
@@ -231,157 +255,194 @@
                 android:id="@+id/btnDetallesCuenta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:backgroundTint="#F2F2F2"
-                android:text="Detalles de mi cuenta"
-                android:textColor="#000000"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="8dp"
-                android:padding="18dp"
                 android:gravity="center_vertical"
+                android:padding="18dp"
+                android:text="Detalles de mi cuenta"
                 android:textAlignment="viewStart"
+                android:textColor="#000000"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/btnMisTarjetas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:backgroundTint="#F2F2F2"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:padding="18dp"
+                android:text="Mis tarjetas"
+                android:textAlignment="viewStart"
+                android:textColor="#000000"
                 tools:ignore="RtlCompat" />
 
         </LinearLayout>
 
 
-        <LinearLayout
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:scrollbars="none">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descubre más"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:spacing="12dp">
 
-            <GridLayout
-                android:layout_width="437dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:columnCount="2"
-                android:rowCount="1">
-
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="309dp"
+                <!-- Card 1: Compartir Nu -->
+                <LinearLayout
+                    android:id="@+id/btnCompartir"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card"
                     android:padding="16dp"
-                    android:scrollbars="none">
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:minHeight="280dp">
 
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_nu_1"
+                        android:background="@drawable/bg_card_image"
+                        android:clipToOutline="true" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Comparte Nu"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Invita a tus amigos a conocer Nu"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:layout_marginTop="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:text="Compartir Nu"
+                        android:backgroundTint="#9400D3"
+                        android:textColor="@android:color/white"
+                        android:minHeight="36dp"
+                        android:minWidth="100dp" />
+                </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="158dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="8dp">
+                <!-- Card 2: Tarjeta Virtual -->
+                <LinearLayout
+                    android:id="@+id/btnTarjetaVirtual"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card"
+                    android:padding="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:minHeight="280dp">
 
-                            <ImageView
-                                android:layout_width="139dp"
-                                android:layout_height="100dp"
-                                android:scaleType="centerCrop" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_nu_2"
+                        android:background="@drawable/bg_card_image"
+                        android:clipToOutline="true" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="Comparte Nu"
-                                android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Tarjeta Virtual"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Invita a alguien a vivir lo que mas te gusta de NU"
-                                android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="No tienes que esperar la física para empezar a usarla"
+                        android:textSize="13sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="$10.99"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
+                    <Button
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Activar"
+                        android:backgroundTint="#9400D3"
+                        android:textColor="@android:color/white"
+                        android:minHeight="36dp"
+                        android:minWidth="100dp" />
+                </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="8dp">
+                <!-- ✅ Card 3: btnFraude - ahora dentro del mismo LinearLayout -->
+                <LinearLayout
+                    android:id="@+id/btnFraude"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:scaleType="centerCrop" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@drawable/bg_card_image"
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_nu_3" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="Brand"
-                                android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="¿Víctima de fraude?"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Product name"
-                                android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Consejos e información para evitar y protegerte de estos casos"
+                        android:textSize="13sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="$10.99"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="#9400D3"
+                        android:minWidth="100dp"
+                        android:minHeight="36dp"
+                        android:text="Ver más"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="8dp">
+            </LinearLayout>
+        </HorizontalScrollView>
 
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:scaleType="centerCrop" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="Brand"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Product name"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="$10.99"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-                </HorizontalScrollView>
-
-                <!-- Puedes copiar más productos aquí -->
-
-            </GridLayout>
-
-        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
