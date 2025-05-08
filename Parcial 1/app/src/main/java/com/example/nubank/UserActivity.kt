@@ -6,6 +6,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.nubank.models.Usuario
 
 class UserActivity : AppCompatActivity() {
 
@@ -17,14 +18,6 @@ class UserActivity : AppCompatActivity() {
     private lateinit var nextButton: ImageButton
     private lateinit var passwordEditText: EditText // nuevo campo
 
-    data class Usuario(
-        val firstName: String,
-        val lastName: String,
-        val idNumber: String,
-        val email: String,
-        val phone: String,
-        val password: String
-    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.new_user) // Asegúrate que este nombre coincida con tu XML

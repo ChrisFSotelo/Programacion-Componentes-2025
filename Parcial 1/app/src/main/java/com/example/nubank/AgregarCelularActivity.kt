@@ -8,8 +8,6 @@
     import android.widget.Toast
     import androidx.appcompat.app.AppCompatActivity
     import androidx.core.widget.addTextChangedListener
-    import com.example.nubank.enums.TipoLlave
-    import com.example.nubank.models.Llave
 
     class AgregarCelularActivity : AppCompatActivity() {
 
