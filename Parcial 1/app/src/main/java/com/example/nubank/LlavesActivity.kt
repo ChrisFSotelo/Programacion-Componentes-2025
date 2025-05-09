@@ -39,7 +39,7 @@ class LlavesActivity : AppCompatActivity() {
 
     private fun cargarLlaves() {
         val prefs = getSharedPreferences("MisLlaves", Context.MODE_PRIVATE)
-        val setLlaves = prefs.getStringSet("listaLlaves", emptySet()) ?: emptySet()
+        val setLlaves = prefs.getStringSet("listaLlaves", emptySet())?.toMutableSet() ?: mutableSetOf()
 
         val listaLlaves = setLlaves.mapNotNull {
             val partes = it.split(":")
@@ -48,7 +48,10 @@ class LlavesActivity : AppCompatActivity() {
 
         adapter = LlaveAdapter(listaLlaves) { llave ->
             Toast.makeText(this, "Click en ${llave.tipo}: ${llave.valor}", Toast.LENGTH_SHORT).show()
+            val bottomSheet = LlaveBottomSheet.newInstance(llave.tipo, llave.valor)
+            bottomSheet.show(supportFragmentManager, "BottomSheetLlave")
         }
+
 
         recyclerView.adapter = adapter
     }

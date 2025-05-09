@@ -13,7 +13,8 @@ class LlaveAdapter(
 ) : RecyclerView.Adapter<LlaveAdapter.LlaveViewHolder>() {
 
     inner class LlaveViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val txtLlave = itemView.findViewById<TextView>(R.id.txtLlave)
+        val txtValor = itemView.findViewById<TextView>(R.id.txtValor)
+        val txtTipo = itemView.findViewById<TextView>(R.id.txtTipo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LlaveViewHolder {
@@ -24,9 +25,11 @@ class LlaveAdapter(
 
     override fun onBindViewHolder(holder: LlaveViewHolder, position: Int) {
         val llave = llaves[position]
-        holder.txtLlave.text = "${llave.tipo}: ${llave.valor}"
+        holder.txtValor.text = llave.valor
+        holder.txtTipo.text = llave.tipo
         holder.itemView.setOnClickListener { onClick(llave) }
     }
+
 
     override fun getItemCount(): Int = llaves.size
 }

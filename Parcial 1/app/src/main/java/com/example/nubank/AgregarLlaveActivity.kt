@@ -13,6 +13,8 @@ class AgregarLlaveActivity : AppCompatActivity() {
 
         val btnCelular = findViewById<LinearLayout>(R.id.opcion_celular)
         val btnCorreo = findViewById<LinearLayout>(R.id.opcion_correo)
+        val btnDocumento = findViewById<LinearLayout>(R.id.opcion_documento)
+        val btnPlaca = findViewById<LinearLayout>(R.id.opcion_placa)
 
         btnCelular.setOnClickListener {
             val intent = Intent(this, AgregarCelularActivity::class.java)
@@ -24,7 +26,16 @@ class AgregarLlaveActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Puedes agregar más botones y listeners según el tipo de llave
+        btnDocumento.setOnClickListener {
+            val intent = Intent(this, AgregarDocumentoActivity::class.java)
+            startActivity(intent)
+        }
+        btnPlaca.setOnClickListener {
+            val intent = Intent(this, AgregarPlacaActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }
 

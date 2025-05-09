@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <!-- Botón de cerrar -->
+
+    <!-- Valor de la llave -->
+    <ImageView
+        android:id="@+id/btnCerrar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_arrow_back" />
+
+    <TextView
+        android:id="@+id/txtTipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1000224614"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingTop="16dp"
+        android:paddingBottom="4dp" />
+
+    <!-- Tipo o fecha de la llave -->
+    <TextView
+        android:id="@+id/txtValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrada el 10 de abril de 2025"
+        android:textSize="14sp"
+        android:textColor="#757575" />
+
+    <!-- Compartir llave -->
+    <LinearLayout
+        android:id="@+id/btnCompartir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="24dp"
+        android:paddingBottom="12dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_share" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compartir llave"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <!-- Eliminar llave -->
+    <LinearLayout
+        android:id="@+id/btnEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_delete"
+            app:tint="#D32F2F" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eliminar llave"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:textColor="#D32F2F" />
+    </LinearLayout>
+
+</LinearLayout>
