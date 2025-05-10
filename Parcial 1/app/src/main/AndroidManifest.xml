@@ -20,6 +20,14 @@
         <activity android:name=".InviteScreenActivity" />
         <activity android:name=".MovimientosActivity" />
         <activity android:name=".MovimientosAdapter" />
+        <activity android:name=".AgregarLlaveActivity" />
+        <activity android:name=".AgregarCelularActivity" />
+        <activity android:name=".AgregarDocumentoActivity" />
+        <activity android:name=".AgregarPlacaActivity" />
+        <activity android:name=".AgregarCorreoActivity" />
+        <activity android:name=".LlavesActivity" />
+        <activity android:name=".LlaveAdapter" />
+        <activity android:name=".LlaveBottomSheet" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >

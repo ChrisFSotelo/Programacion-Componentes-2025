@@ -3,7 +3,7 @@ package com.example.nubank
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
+
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -20,6 +20,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var btnInvitarUsuario: ImageView
     private lateinit var btnVerMonto: ImageView
     private lateinit var textMonto: TextView
+    private lateinit var btnLlaves: ImageView
 
     private var ayudaVisible = true
     private var valorRealMonto = ""
@@ -33,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
         btnInvitarUsuario = findViewById(R.id.btnInvitarUsuario)
         btnCompartir = findViewById(R.id.btnCompartir)
         btnFraude = findViewById(R.id.btnFraude)
+        btnLlaves = findViewById(R.id.tusLlaves)
 
 
         btnVerMonto = findViewById(R.id.btnVerMonto)
@@ -51,6 +53,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnLlaves.setOnClickListener {
+            val intent = Intent(this, LlavesActivity::class.java)
+            startActivity(intent)
+        }
         btnInvitarUsuario.setOnClickListener {
             val intent = Intent(this, InviteScreenActivity::class.java)
             startActivity(intent)
