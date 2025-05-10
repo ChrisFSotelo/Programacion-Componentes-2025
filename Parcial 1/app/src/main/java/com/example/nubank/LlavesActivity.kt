@@ -43,17 +43,20 @@ class LlavesActivity : AppCompatActivity() {
 
         val listaLlaves = setLlaves.mapNotNull {
             val partes = it.split(":")
-            if (partes.size == 2) Llave(partes[1], TipoLlave.valueOf(partes[0]).toString()) else null
+            if (partes.size == 2) {
+                val tipoEnum = runCatching { TipoLlave.valueOf(partes[0]) }.getOrNull()
+                tipoEnum?.let { tipo -> Llave(tipo, partes[1]) }
+            } else null
         }
 
         adapter = LlaveAdapter(listaLlaves) { llave ->
             Toast.makeText(this, "Click en ${llave.tipo}: ${llave.valor}", Toast.LENGTH_SHORT).show()
-            val bottomSheet = LlaveBottomSheet.newInstance(llave.tipo, llave.valor)
+            val bottomSheet = LlaveBottomSheet.newInstance(llave.tipo.name, llave.valor)
             bottomSheet.show(supportFragmentManager, "BottomSheetLlave")
         }
 
-
         recyclerView.adapter = adapter
     }
+
 }
 

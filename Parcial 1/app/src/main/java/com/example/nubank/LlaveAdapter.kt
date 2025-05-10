@@ -26,9 +26,10 @@ class LlaveAdapter(
     override fun onBindViewHolder(holder: LlaveViewHolder, position: Int) {
         val llave = llaves[position]
         holder.txtValor.text = llave.valor
-        holder.txtTipo.text = llave.tipo
+        holder.txtTipo.text = llave.tipo.name  // Usamos 'name' para obtener el nombre del enum
         holder.itemView.setOnClickListener { onClick(llave) }
     }
+
 
 
     override fun getItemCount(): Int = llaves.size

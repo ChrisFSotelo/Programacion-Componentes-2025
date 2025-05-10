@@ -1,6 +1,5 @@
 package com.example.nubank.models
 
-data class Llave(
-    val tipo: String,
-    val valor: String
-)
+import com.example.nubank.enums.TipoLlave
+
+data class Llave(val tipo: TipoLlave, val valor: String)
