@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollViewOtroBanco"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:id="@+id/containerOtroBanco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Encabezado de confirmación -->
+        <TextView
+            android:id="@+id/tvConfirmacionTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Listo! vas a enviar"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Monto -->
+        <TextView
+            android:id="@+id/tvMontoEnvio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$100"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#8C00FF"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Impuesto -->
+        <TextView
+            android:id="@+id/tvImpuesto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ $0 por impuesto del 4X1.000"
+            android:textSize="14sp"
+            android:textColor="#8C00FF"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Subtítulo -->
+        <TextView
+            android:id="@+id/tvSubtituloFormulario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿A qué banco y cuenta vas a enviar?"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Elegir banco -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Elige un banco"
+            android:textColor="#888888"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/spinnerBancos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Tipo de cuenta -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Qué tipo de cuenta es?"
+            android:textColor="#888888"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/spinnerTipoCuenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Número de cuenta -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Cuál es el número de la cuenta?"
+            android:textColor="#888888"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etNumeroCuenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número de cuenta"
+            android:inputType="number"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Botón continuar -->
+        <ImageButton
+            android:id="@+id/btnContinuar"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_arrow_forward"
+            android:background="@drawable/circle_background"
+            android:layout_gravity="end"
+            android:contentDescription="Continuar" />
+    </LinearLayout>
+</ScrollView>

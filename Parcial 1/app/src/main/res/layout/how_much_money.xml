@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tv_titulo_celular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Cuanto quieres enviar?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="4dp" />
+
+    <!-- Subtítulo -->
+    <TextView
+        android:id="@+id/tv_subtitulo_celular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tu dinero actual: "
+        android:textSize="14sp"
+        android:textColor="#555555"
+        android:layout_marginBottom="24dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EEEEEE"
+        android:layout_marginVertical="8dp" />
+    <!-- Campo de texto -->
+    <EditText
+        android:id="@+id/editTextMonto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="$ 0"
+        android:inputType="number"
+        android:maxLength="10"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:backgroundTint="#FFFFFF" />
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EEEEEE"
+        android:layout_marginVertical="8dp" />
+
+    <ImageView
+        android:id="@+id/btnContinuar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="right"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_arrow_forward" />
+</LinearLayout>
+

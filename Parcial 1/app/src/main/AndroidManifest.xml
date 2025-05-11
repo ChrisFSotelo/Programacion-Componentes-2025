@@ -28,6 +28,10 @@
         <activity android:name=".LlavesActivity" />
         <activity android:name=".LlaveAdapter" />
         <activity android:name=".LlaveBottomSheet" />
+        <activity android:name=".EnviarDineroActivity" />
+        <activity android:name=".MethodSendActivity" />
+        <activity android:name=".OtherBanksActivity" />
+        <activity android:name=".DataBankActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >

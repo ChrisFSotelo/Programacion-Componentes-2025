@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutEnviarDinero"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Imagen superior (mockup) -->
+    <ImageView
+        android:id="@+id/imgTransferencia"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fast_send" />
+
+    <!-- Título principal -->
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Qué tan rápida es una\ntransferencia instantánea?"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <!-- Texto descriptivo -->
+    <TextView
+        android:id="@+id/txtDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dicen que en Nu puedes enviar dinero más rápido que la velocidad de la luz."
+        android:textColor="#444444"
+        android:textSize="15sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Subtítulo -->
+    <TextView
+        android:id="@+id/txtSubtitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Cómo se hace un envío instantáneo?"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp" />
+
+    <!-- Texto explicativo -->
+    <TextView
+        android:id="@+id/txtExplicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Fácil! Solo necesitas pedirle la llave a la persona que recibirá la transferencia.\n\nCopia y pega la llave, y el dinero viajará en un parpadeo."
+        android:textColor="#444444"
+        android:textSize="15sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Botón inferior -->
+    <Button
+        android:id="@+id/btnEnviarDinero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enviar dinero"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:backgroundTint="#8C00FF"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        android:padding="14dp"
+        android:background="@drawable/boton_morado_redondo" />
+</LinearLayout>

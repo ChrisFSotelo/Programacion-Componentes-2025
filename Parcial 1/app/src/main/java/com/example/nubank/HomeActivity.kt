@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 class HomeActivity : AppCompatActivity() {
 
+    private lateinit var btnEnviarDineroLlave: Button
     private lateinit var btnDetallesCuenta: Button
     private lateinit var btnCuentaAhorros: ConstraintLayout
     private lateinit var btnCompartir: LinearLayout
@@ -29,6 +30,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_page)
 
+        btnEnviarDineroLlave = findViewById(R.id.enviarDineroLlaves)
         btnDetallesCuenta = findViewById(R.id.btnDetallesCuenta)
         btnCuentaAhorros = findViewById(R.id.cuentaAhorros)
         btnInvitarUsuario = findViewById(R.id.btnInvitarUsuario)
@@ -42,6 +44,11 @@ class HomeActivity : AppCompatActivity() {
 
         // Guarda el texto original del monto
         valorRealMonto = textMonto.text.toString()
+
+        btnEnviarDineroLlave.setOnClickListener {
+            val intent = Intent(this, EnviarDineroActivity::class.java)
+            startActivity(intent)
+        }
 
         btnDetallesCuenta.setOnClickListener {
             val intent = Intent(this, DetallesCuentaActivity::class.java)
