@@ -75,10 +75,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        btnDepositar.setOnClickListener {
-//            val intent = Intent(this, DepositarActivity::class.java)
-//            startActivity(intent)
-//        }
+        btnDepositar.setOnClickListener {
+            val intent = Intent(this, DepositarActivity::class.java)
+            startActivity(intent)
+        }
         btnFraude.setOnClickListener {
             val url = "https://blog.nu.com.co/ayuda/"
             val intent = Intent(Intent.ACTION_VIEW)

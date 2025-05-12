@@ -34,6 +34,8 @@
         <activity android:name=".DataBankActivity" />
         <activity android:name=".UserBankActivity" />
         <activity android:name=".ConfirmacionActivity" />
+        <activity android:name=".DepositarActivity" />
+        <activity android:name=".CorresponsalActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#FFFFFF">
 
     <LinearLayout
@@ -11,6 +12,16 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         <!-- Título -->
         <TextView
             android:id="@+id/tvTitulo"
@@ -60,6 +71,7 @@
             android:layout_marginBottom="8dp" />
 
         <LinearLayout
+            android:id="@+id/layout_llave_documento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -75,6 +87,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/titulo_llave_documento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Recibe con tu llave"
@@ -83,15 +96,17 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/valor_llave_documento"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1000224614"
+                    android:text="..."
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/btn_copiar_documento"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_copy"
@@ -99,11 +114,13 @@
                 app:tint="#8A05BE" />
 
             <ImageView
+                android:id="@+id/btn_editar_documento"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_edit"
                 app:tint="#8A05BE" />
         </LinearLayout>
+
 
         <!-- Más opciones -->
         <LinearLayout
