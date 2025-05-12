@@ -1,5 +1,6 @@
 package com.example.nubank
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -44,15 +45,23 @@ class DataBankActivity : AppCompatActivity() {
 
             // Validaciones básicas
             if (numeroCuenta.isEmpty()) {
-                Toast.makeText(this, "Por favor ingresa el número de cuenta", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor ingresa el número de cuenta", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
 
             // Mostrar los datos por consola (luego puedes enviarlos a otra Activity o a tu backend)
-            Log.d("DataBank", "Banco: $bancoSeleccionado")
-            Log.d("DataBank", "Tipo de cuenta: $tipoCuentaSeleccionada")
-            Log.d("DataBank", "Número: $numeroCuenta")
-            Log.d("DataBank", "Monto recibido: $montoRecibido")
+//            Log.d("DataBank", "Banco: $bancoSeleccionado")
+//            Log.d("DataBank", "Tipo de cuenta: $tipoCuentaSeleccionada")
+//            Log.d("DataBank", "Número: $numeroCuenta")
+//            Log.d("DataBank", "Monto recibido: $montoRecibido")
+
+            val intent = Intent(this, UserBankActivity::class.java)
+            intent.putExtra("banco", bancoSeleccionado)
+            intent.putExtra("tipoCuenta", tipoCuentaSeleccionada)
+            intent.putExtra("numeroCuenta", numeroCuenta)
+            intent.putExtra("monto", montoRecibido)
+            startActivity(intent)
         }
 
 

@@ -32,6 +32,8 @@
         <activity android:name=".MethodSendActivity" />
         <activity android:name=".OtherBanksActivity" />
         <activity android:name=".DataBankActivity" />
+        <activity android:name=".UserBankActivity" />
+        <activity android:name=".ConfirmacionActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.graphics.Color
+import android.widget.ImageButton
 
 class MovimientosActivity : AppCompatActivity() {
 
@@ -20,6 +21,7 @@ class MovimientosActivity : AppCompatActivity() {
         val enviarBtn = findViewById<LinearLayout>(R.id.enviarBtn)
         val recargarBtn = findViewById<LinearLayout>(R.id.recargarBtn)
         val detallesCuentaBtn = findViewById<LinearLayout>(R.id.detallesCuentaBtn)
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
 
         // Listener para el botón Depositar
         depositarBtn.setOnClickListener {
@@ -46,6 +48,9 @@ class MovimientosActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         val recyclerView: RecyclerView = findViewById(R.id.MovimientosLista)
         recyclerView.layoutManager = LinearLayoutManager(this)

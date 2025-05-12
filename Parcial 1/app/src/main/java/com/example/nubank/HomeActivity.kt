@@ -22,6 +22,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var btnVerMonto: ImageView
     private lateinit var textMonto: TextView
     private lateinit var btnLlaves: ImageView
+    private lateinit var btnDepositar: ImageView
 
     private var ayudaVisible = true
     private var valorRealMonto = ""
@@ -37,6 +38,7 @@ class HomeActivity : AppCompatActivity() {
         btnCompartir = findViewById(R.id.btnCompartir)
         btnFraude = findViewById(R.id.btnFraude)
         btnLlaves = findViewById(R.id.tusLlaves)
+        btnDepositar = findViewById(R.id.depositar)
 
 
         btnVerMonto = findViewById(R.id.btnVerMonto)
@@ -72,6 +74,11 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, InviteScreenActivity::class.java)
             startActivity(intent)
         }
+
+//        btnDepositar.setOnClickListener {
+//            val intent = Intent(this, DepositarActivity::class.java)
+//            startActivity(intent)
+//        }
         btnFraude.setOnClickListener {
             val url = "https://blog.nu.com.co/ayuda/"
             val intent = Intent(Intent.ACTION_VIEW)

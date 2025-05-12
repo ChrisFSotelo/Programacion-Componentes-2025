@@ -1,6 +1,8 @@
     package com.example.nubank
 
+    import android.content.Intent
     import android.os.Bundle
+    import android.widget.ImageButton
     import android.widget.ImageView
     import android.widget.TextView
     import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +17,7 @@
             val tvCedula = findViewById<TextView>(R.id.tvCedula)
             val tvPlaca = findViewById<TextView>(R.id.tvPlaca)
             val tvCuenta = findViewById<TextView>(R.id.tvCuenta)
+            val btnBack = findViewById<ImageButton>(R.id.btnBack)
 
             // Recuperar datos desde SharedPreferences
             val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
@@ -35,6 +38,10 @@
             ayudaBtn.setOnClickListener {
                 val bottomSheet = SavingAccountBottomSheet()
                 bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+            }
+
+            btnBack.setOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
             }
         }
     }

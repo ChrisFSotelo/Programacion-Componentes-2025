@@ -2,6 +2,7 @@ package com.example.nubank
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 
@@ -15,6 +16,8 @@ class MethodSendActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.method_send)
 
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+
         btnLlave = findViewById(R.id.opcionOtrosBancosLlaves)
         btnNu = findViewById(R.id.opcionClientesNu)
         btnOtrosBancos = findViewById(R.id.opcionOtrosBancos)
@@ -22,6 +25,10 @@ class MethodSendActivity : AppCompatActivity(){
         btnOtrosBancos.setOnClickListener {
             val intent = Intent(this,OtherBanksActivity ::class.java)
             startActivity(intent)
+        }
+
+        btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
 
     }

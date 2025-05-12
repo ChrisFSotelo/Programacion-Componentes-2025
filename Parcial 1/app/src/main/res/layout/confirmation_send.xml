@@ -8,11 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:divider="?android:attr/dividerHorizontal"
+        android:showDividers="middle">
 
         <!-- Título -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="¡Confirmemos!"
             android:textSize="20sp"
@@ -22,7 +24,7 @@
 
         <!-- Subtítulo -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Revisemos que los datos que tenemos sean correctos para hacer el envío a la persona que tú quieres."
             android:textSize="14sp"
@@ -40,30 +42,110 @@
             android:textSize="13sp"
             android:layout_marginBottom="20dp" />
 
-        <!-- Datos -->
-        <TextView android:text="¿A qué banco vas a enviar?" style="@style/DatoTitulo"/>
-        <TextView android:id="@+id/tvBanco" style="@style/DatoValor"/>
+        <!-- Reusable item layout: label + value -->
+        <TextView style="@style/DatoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿A qué banco vas a enviar?" />
+        <TextView
+            android:id="@+id/tvBanco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        <TextView android:text="¿Cuál es el número de la cuenta?" style="@style/DatoTitulo"/>
-        <TextView android:id="@+id/tvNumeroCuenta" style="@style/DatoValor"/>
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            style="@style/DatoValor" />
 
-        <TextView android:text="¿Qué tipo de documento tiene?" style="@style/DatoTitulo"/>
-        <TextView android:id="@+id/tvTipoDocumento" style="@style/DatoValor"/>
+        <TextView style="@style/DatoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Cuál es el número de la cuenta?" />
+        <TextView
+            android:id="@+id/tvNumeroCuenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        <TextView android:text="¿Cómo es el número de documento?" style="@style/DatoTitulo"/>
-        <TextView android:id="@+id/tvNumeroDocumento" style="@style/DatoValor"/>
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            style="@style/DatoValor" />
 
-        <TextView android:text="Monto" style="@style/DatoTitulo"/>
-        <TextView android:id="@+id/tvMonto" style="@style/DatoValor"/>
+        <TextView style="@style/DatoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Qué tipo de documento tiene?" />
+        <TextView
+            android:id="@+id/tvTipoDocumento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        <TextView android:text="Impuesto del 4X1.000" style="@style/DatoTitulo"/>
-        <TextView android:id="@+id/tvImpuesto" style="@style/DatoValor"/>
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            style="@style/DatoValor" />
 
-        <TextView android:text="Cobro de envío" style="@style/DatoTitulo"/>
-        <TextView android:id="@+id/tvCobroEnvio" style="@style/DatoValor"/>
+        <TextView style="@style/DatoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Cómo es el número de documento?" />
+        <TextView
+            android:id="@+id/tvNumeroDocumento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        <TextView android:text="¿Qué tipo de cuenta es?" style="@style/DatoTitulo"/>
-        <TextView android:id="@+id/tvTipoCuenta" style="@style/DatoValor"/>
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            style="@style/DatoValor" />
+
+        <TextView style="@style/DatoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Monto" />
+        <TextView
+            android:id="@+id/tvMonto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            style="@style/DatoValor" />
+
+        <TextView style="@style/DatoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Impuesto del 4X1.000" />
+        <TextView
+            android:id="@+id/tvImpuesto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            android:text="$ 0"
+            style="@style/DatoValor" />
+
+        <TextView style="@style/DatoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cobro de envío" />
+        <TextView
+            android:id="@+id/tvCobroEnvio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            style="@style/DatoValor" />
+
+        <TextView style="@style/DatoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Qué tipo de cuenta es?" />
+        <TextView
+            android:id="@+id/tvTipoCuenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            style="@style/DatoValor" />
 
         <!-- Botones -->
         <LinearLayout
