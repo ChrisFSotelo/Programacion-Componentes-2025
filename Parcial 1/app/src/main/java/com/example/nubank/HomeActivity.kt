@@ -39,13 +39,14 @@ class HomeActivity : AppCompatActivity() {
         btnFraude = findViewById(R.id.btnFraude)
         btnLlaves = findViewById(R.id.tusLlaves)
         btnDepositar = findViewById(R.id.depositar)
-
-
         btnVerMonto = findViewById(R.id.btnVerMonto)
         textMonto = findViewById(R.id.textMonto)
-
         // Guarda el texto original del monto
         valorRealMonto = textMonto.text.toString()
+
+        val saldo = obtenerSaldoActual(this)
+        val textMonto = findViewById<TextView>(R.id.textMonto)
+        textMonto.text = "$ %.2f".format(saldo)
 
         btnEnviarDineroLlave.setOnClickListener {
             val intent = Intent(this, EnviarDineroActivity::class.java)

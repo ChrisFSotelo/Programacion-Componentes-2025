@@ -36,6 +36,8 @@
         <activity android:name=".ConfirmacionActivity" />
         <activity android:name=".DepositarActivity" />
         <activity android:name=".CorresponsalActivity" />
+        <activity android:name=".ReciboDepositoActivity" />
+        <activity android:name=".DepositoExitosoActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >

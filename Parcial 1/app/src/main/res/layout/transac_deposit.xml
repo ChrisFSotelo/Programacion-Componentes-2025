@@ -22,7 +22,7 @@
         android:id="@+id/tvNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ALONSO CESPEDES BARRERO"
+        android:text=""
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="@android:color/black"
@@ -38,7 +38,7 @@
         android:id="@+id/tvLimiteLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Límite por transacción"
+        android:text="Valor de la transacción"
         android:textSize="14sp"
         android:textColor="#666666"
         app:layout_constraintTop_toBottomOf="@id/tvNombre"
@@ -49,10 +49,10 @@
         android:layout_marginEnd="16dp" />
 
     <TextView
-        android:id="@+id/tvLimiteValor"
+        android:id="@+id/etMontoDeposito"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Mínimo $1.000 - Máximo $1.000.000"
+        android:text=""
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@android:color/black"
@@ -71,7 +71,7 @@
         android:textSize="14sp"
         android:textColor="#666666"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvLimiteValor"
+        app:layout_constraintTop_toBottomOf="@id/etMontoDeposito"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
@@ -81,7 +81,7 @@
         android:id="@+id/tvDireccionValor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="CALLE13 18Q 91"
+        android:text=""
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@android:color/black"
@@ -90,7 +90,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp" />
-
     <!-- Horarios -->
     <TextView
         android:id="@+id/tvHorarioLabel"
@@ -162,7 +161,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Botón verde: Realizar Depósito -->
         <LinearLayout
+            android:id="@+id/depositarBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -170,43 +171,47 @@
             android:layout_marginEnd="32dp">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:backgroundTint="@color/purple_700"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_circle_green"
                 android:src="@drawable/ic_location"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                app:tint="@android:color/white" />
+                app:tint="@android:color/white"
+                android:padding="12dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Realizar Deposito"
-                android:textSize="12sp"
+                android:text="Realizar Depósito"
+                android:textSize="16sp"
                 android:textColor="@android:color/black"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
 
+        <!-- Botón rojo: No realizar depósito -->
         <LinearLayout
+            android:id="@+id/noDepositarBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:backgroundTint="@android:color/darker_gray"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_circle_red"
                 android:src="@drawable/ic_warning"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                app:tint="@android:color/black" />
+                app:tint="@android:color/white"
+                android:padding="12dp"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No realizar mi depósito"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textColor="@android:color/black"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
