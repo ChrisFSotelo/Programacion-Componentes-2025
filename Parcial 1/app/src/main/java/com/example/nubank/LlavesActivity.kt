@@ -3,6 +3,7 @@ package com.example.nubank
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,12 +24,16 @@ class LlavesActivity : AppCompatActivity() {
 
         btnAgregarLlave = findViewById(R.id.btn_agregar_llave)
         recyclerView = findViewById(R.id.recyclerLlaves)
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         btnAgregarLlave.setOnClickListener {
             val intent = Intent(this, AgregarLlaveActivity::class.java)
             startActivity(intent)
+        }
+        btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 
@@ -50,7 +55,6 @@ class LlavesActivity : AppCompatActivity() {
         }
 
         adapter = LlaveAdapter(listaLlaves) { llave ->
-            Toast.makeText(this, "Click en ${llave.tipo}: ${llave.valor}", Toast.LENGTH_SHORT).show()
             val bottomSheet = LlaveBottomSheet.newInstance(llave.tipo.name, llave.valor)
             bottomSheet.show(supportFragmentManager, "BottomSheetLlave")
         }

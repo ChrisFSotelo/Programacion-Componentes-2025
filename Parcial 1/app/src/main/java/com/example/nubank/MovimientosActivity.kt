@@ -44,10 +44,6 @@ class MovimientosActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        recargarBtn.setOnClickListener {
-            Toast.makeText(this, "Recargar clicado", Toast.LENGTH_SHORT).show()
-        }
-
         detallesCuentaBtn.setOnClickListener {
             val intent = Intent(this, DetallesCuentaActivity::class.java)
             startActivity(intent)

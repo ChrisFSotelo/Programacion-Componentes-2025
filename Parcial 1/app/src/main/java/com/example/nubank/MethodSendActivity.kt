@@ -18,8 +18,7 @@ class MethodSendActivity : AppCompatActivity(){
 
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
 
-        btnLlave = findViewById(R.id.opcionOtrosBancosLlaves)
-        btnNu = findViewById(R.id.opcionClientesNu)
+
         btnOtrosBancos = findViewById(R.id.opcionOtrosBancos)
 
         btnOtrosBancos.setOnClickListener {
@@ -28,7 +27,8 @@ class MethodSendActivity : AppCompatActivity(){
         }
 
         btnBack.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+            val intent = Intent(this,HomeActivity ::class.java)
+            startActivity(intent)
         }
 
     }

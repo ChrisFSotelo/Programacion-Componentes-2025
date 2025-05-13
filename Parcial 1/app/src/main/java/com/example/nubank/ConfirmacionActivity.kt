@@ -91,7 +91,8 @@ class ConfirmacionActivity : AppCompatActivity() {
             editor.apply()
 
             Toast.makeText(this, "Envío registrado con éxito", Toast.LENGTH_SHORT).show()
-
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
             finish()
         }
 
