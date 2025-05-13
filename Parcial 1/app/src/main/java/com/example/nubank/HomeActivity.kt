@@ -31,6 +31,8 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_page)
 
+
+
         btnEnviarDineroLlave = findViewById(R.id.enviarDineroLlaves)
         btnDetallesCuenta = findViewById(R.id.btnDetallesCuenta)
         btnCuentaAhorros = findViewById(R.id.cuentaAhorros)
@@ -59,7 +61,9 @@ class HomeActivity : AppCompatActivity() {
         }
 
         btnCuentaAhorros.setOnClickListener {
+            val saldo = obtenerSaldoActual(this)  // Usa la función utilitaria
             val intent = Intent(this, MovimientosActivity::class.java)
+            intent.putExtra("saldo_actual", saldo)
             startActivity(intent)
         }
 
@@ -98,6 +102,17 @@ class HomeActivity : AppCompatActivity() {
                 textMonto.text = "$ ••••••"
             }
         }
+
     }
+    private fun actualizarSaldo() {
+        val saldo = obtenerSaldoActual(this)
+        textMonto.text = "$ %.2f".format(saldo)
+        valorRealMonto = textMonto.text.toString()
+    }
+    override fun onResume() {
+        super.onResume()
+        actualizarSaldo()
+    }
+
 }
 

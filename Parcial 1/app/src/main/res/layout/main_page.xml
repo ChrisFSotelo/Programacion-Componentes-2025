@@ -30,13 +30,10 @@
                     android:id="@+id/configuracionUsuario"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/circle_background"
                     android:padding="2dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_profile"
                     android:clickable="true"
                     android:focusable="true"/>
-
                 <!-- Espaciador flexible -->
                 <View
                     android:layout_width="0dp"
@@ -266,19 +263,7 @@
                 android:textColor="#000000"
                 tools:ignore="RtlCompat" />
 
-            <Button
-                android:id="@+id/btnMisTarjetas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:backgroundTint="#F2F2F2"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:padding="18dp"
-                android:text="Mis tarjetas"
-                android:textAlignment="viewStart"
-                android:textColor="#000000"
-                tools:ignore="RtlCompat" />
+
 
         </LinearLayout>
 

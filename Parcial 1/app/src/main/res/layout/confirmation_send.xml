@@ -47,15 +47,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="¿A qué banco vas a enviar?" />
+
         <TextView
             android:id="@+id/tvBanco"
+            style="@style/DatoValor"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp" />
+
+        <TextView style="@style/DatoTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:text="¿Quien es el titular de la cuenta?" />
+        <TextView
+            android:id="@+id/tvNombreTitular"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
             android:gravity="center_vertical"
             android:paddingHorizontal="8dp"
             style="@style/DatoValor" />
-
         <TextView style="@style/DatoTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,8 +74,7 @@
         <TextView
             android:id="@+id/tvNumeroCuenta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="36dp"
             android:gravity="center_vertical"
             android:paddingHorizontal="8dp"
             style="@style/DatoValor" />
@@ -76,8 +86,7 @@
         <TextView
             android:id="@+id/tvTipoDocumento"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="36dp"
             android:gravity="center_vertical"
             android:paddingHorizontal="8dp"
             style="@style/DatoValor" />
@@ -89,8 +98,7 @@
         <TextView
             android:id="@+id/tvNumeroDocumento"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="36dp"
             android:gravity="center_vertical"
             android:paddingHorizontal="8dp"
             style="@style/DatoValor" />
@@ -100,10 +108,9 @@
             android:layout_height="wrap_content"
             android:text="Monto" />
         <TextView
-            android:id="@+id/tvMonto"
+            android:id="@+id/tvMontoEnvio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="36dp"
             android:gravity="center_vertical"
             android:paddingHorizontal="8dp"
             style="@style/DatoValor" />
@@ -115,8 +122,7 @@
         <TextView
             android:id="@+id/tvImpuesto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:layout_height="36dp"            android:gravity="center_vertical"
             android:paddingHorizontal="8dp"
             android:text="$ 0"
             style="@style/DatoValor" />
@@ -128,8 +134,7 @@
         <TextView
             android:id="@+id/tvCobroEnvio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="36dp"
             android:gravity="center_vertical"
             android:paddingHorizontal="8dp"
             style="@style/DatoValor" />
@@ -141,8 +146,7 @@
         <TextView
             android:id="@+id/tvTipoCuenta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="36dp"
             android:gravity="center_vertical"
             android:paddingHorizontal="8dp"
             style="@style/DatoValor" />
@@ -155,7 +159,7 @@
             android:gravity="center"
             android:layout_marginTop="32dp">
 
-            <Button
+                <Button
                 android:id="@+id/btnEnviar"
                 android:layout_width="0dp"
                 android:layout_weight="1"
