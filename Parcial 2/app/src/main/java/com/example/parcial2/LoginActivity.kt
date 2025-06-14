@@ -97,22 +97,26 @@ class LoginActivity : AppCompatActivity() {
                                 return@runOnUiThread
                             }
 
-                            if (json.has("usuario")) {
-                                val usuario = json.getJSONObject("usuario")
-                                val rol = usuario.getString("rol")
+                            if (json.has("cliente")) {
+                                val cliente = json.getJSONObject("cliente")
 
-                                if (rol == "usuario") {
-                                    Toast.makeText(this@LoginActivity, "Usuario autenticado", Toast.LENGTH_SHORT).show()
-                                    // TODO: redirigir a pantalla usuario
-                                } else if (rol == "2") {
-                                    Toast.makeText(this@LoginActivity, "Cliente autenticado", Toast.LENGTH_SHORT).show()
-                                    // TODO: redirigir a pantalla cliente
+                                if (cliente.has("idRol")) {
+                                    val rol = cliente.getInt("idRol")
+
+                                     if (rol == 2) {
+                                        Toast.makeText(this@LoginActivity, "Cliente Registrado correctamente", Toast.LENGTH_SHORT).show()
+                                        // TODO: redirigir a pantalla cliente
+                                    } else {
+                                        Toast.makeText(this@LoginActivity, "Rol no reconocido", Toast.LENGTH_SHORT).show()
+                                    }
                                 } else {
-                                    Toast.makeText(this@LoginActivity, "Rol no reconocido", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@LoginActivity, "Campo idRol no encontrado en JSON", Toast.LENGTH_SHORT).show()
                                 }
+
                             } else {
-                                Toast.makeText(this@LoginActivity, "Respuesta sin datos de usuario", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@LoginActivity, "Respuesta sin datos de cliente", Toast.LENGTH_SHORT).show()
                             }
+
 
                         } catch (e: Exception) {
                             Log.e("LOGIN_ERROR", "Error al parsear JSON: ${e.message}")
