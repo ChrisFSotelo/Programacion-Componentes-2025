@@ -1,32 +1,47 @@
+package com.example.parcial2
+
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.parcial2.R
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import android.view.animation.AnimationUtils // ⬅️ Asegúrate de importar esto
+import androidx.annotation.OptIn
+import androidx.media3.common.util.Log
+import androidx.media3.common.util.UnstableApi
+
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var viewFlipper: ViewFlipper
 
+
+    @OptIn(UnstableApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         viewFlipper = findViewById(R.id.form_flipper)
+        viewFlipper.displayedChild = 0
+
+        viewFlipper.inAnimation = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left)
+        viewFlipper.outAnimation = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right)
+
 
         val goToRegister: TextView = findViewById(R.id.go_to_register)
         val goToLogin: TextView = findViewById(R.id.go_to_login)
 
         goToRegister.setOnClickListener {
-            viewFlipper.displayedChild = 0 // Registro
+            Log.d("holaaa", "Click en goToRegister")
+            Toast.makeText(this, "Ir a registro", Toast.LENGTH_SHORT).show()
+            viewFlipper.displayedChild = 1
         }
 
         goToLogin.setOnClickListener {
-            viewFlipper.displayedChild = 1 // Login
+            Toast.makeText(this, "Volver a login", Toast.LENGTH_SHORT).show()
+            viewFlipper.displayedChild = 0
         }
 
         findViewById<Button>(R.id.btn_iniciar_sesion).setOnClickListener {

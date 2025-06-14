@@ -18,6 +18,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- FORMULARIO DE LOGIN -->
+        <LinearLayout
+            android:id="@+id/layout_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="@android:color/white"
+            android:elevation="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Iniciar Sesión"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo electrónico">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_correo_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_clave_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_iniciar_sesion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingresar"
+                android:backgroundTint="#9a4c51"
+                android:textColor="#fff"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/go_to_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿No tienes cuenta? Registrarse"
+                android:textColor="#77301e"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
         <!-- FORMULARIO DE REGISTRO -->
         <LinearLayout
             android:id="@+id/layout_register"
@@ -98,63 +156,6 @@
                 android:layout_marginTop="8dp"/>
         </LinearLayout>
 
-        <!-- FORMULARIO DE LOGIN -->
-        <LinearLayout
-            android:id="@+id/layout_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:background="@android:color/white"
-            android:elevation="4dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Iniciar Sesión"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Correo electrónico">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_correo_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Contraseña">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_clave_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/btn_iniciar_sesion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ingresar"
-                android:backgroundTint="#9a4c51"
-                android:textColor="#fff"
-                android:layout_marginTop="16dp"/>
-
-            <TextView
-                android:id="@+id/go_to_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="¿No tienes cuenta? Registrarse"
-                android:textColor="#77301e"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"/>
-        </LinearLayout>
     </ViewFlipper>
 </androidx.constraintlayout.widget.ConstraintLayout>
