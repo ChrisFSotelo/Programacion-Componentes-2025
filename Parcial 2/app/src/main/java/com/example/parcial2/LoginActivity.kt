@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils // ⬅️ Asegúrate de importar es
 import androidx.annotation.OptIn
 import androidx.media3.common.util.Log
 import androidx.media3.common.util.UnstableApi
+import org.json.JSONException
 
 
 class LoginActivity : AppCompatActivity() {
@@ -72,28 +73,57 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         val request = Request.Builder()
-            .url("http://TU_DOMINIO/src/features/users/controller/ClienteControlador.php?accion=registrar")
+            .url("http://192.168.101.71/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=registrar")
             .post(formBody)
             .build()
 
         OkHttpClient().newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 runOnUiThread {
-                    Toast.makeText(this@LoginActivity, "Error de red", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Error de red222", Toast.LENGTH_SHORT).show()
                 }
             }
 
+            @OptIn(UnstableApi::class)
             override fun onResponse(call: Call, response: Response) {
-                val json = JSONObject(response.body?.string() ?: "{}")
                 runOnUiThread {
-                    if (json.has("mensaje")) {
-                        Toast.makeText(this@LoginActivity, "Registro exitoso", Toast.LENGTH_LONG).show()
-                        viewFlipper.displayedChild = 1
+                    if (response.isSuccessful) {
+                        val respuesta = response.body?.string()
+                        try {
+                            val json = JSONObject(respuesta)
+
+                            if (json.has("error")) {
+                                Toast.makeText(this@LoginActivity, json.getString("error"), Toast.LENGTH_LONG).show()
+                                return@runOnUiThread
+                            }
+
+                            if (json.has("usuario")) {
+                                val usuario = json.getJSONObject("usuario")
+                                val rol = usuario.getString("rol")
+
+                                if (rol == "usuario") {
+                                    Toast.makeText(this@LoginActivity, "Usuario autenticado", Toast.LENGTH_SHORT).show()
+                                    // TODO: redirigir a pantalla usuario
+                                } else if (rol == "2") {
+                                    Toast.makeText(this@LoginActivity, "Cliente autenticado", Toast.LENGTH_SHORT).show()
+                                    // TODO: redirigir a pantalla cliente
+                                } else {
+                                    Toast.makeText(this@LoginActivity, "Rol no reconocido", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                Toast.makeText(this@LoginActivity, "Respuesta sin datos de usuario", Toast.LENGTH_SHORT).show()
+                            }
+
+                        } catch (e: Exception) {
+                            Log.e("LOGIN_ERROR", "Error al parsear JSON: ${e.message}")
+                            Toast.makeText(this@LoginActivity, "Error al procesar la respuesta", Toast.LENGTH_LONG).show()
+                        }
                     } else {
-                        Toast.makeText(this@LoginActivity, json.optString("error", "Error desconocido"), Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@LoginActivity, "Error: ${response.message}", Toast.LENGTH_LONG).show()
                     }
                 }
             }
+
         })
     }
 
@@ -112,7 +142,7 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         val request = Request.Builder()
-            .url("http://TU_DOMINIO/src/features/users/controller/UsuarioControlador.php?accion=autenticar")
+            .url("http://192.168.101.71/Urban-Pixel/src/features/users/controller/UsuarioControlador.php?accion=autenticar")
             .post(formBody)
             .build()
 
@@ -123,24 +153,36 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
+            @OptIn(UnstableApi::class)
             override fun onResponse(call: Call, response: Response) {
-                val json = JSONObject(response.body?.string() ?: "{}")
-                runOnUiThread {
-                    if (json.has("error")) {
-                        Toast.makeText(this@LoginActivity, json.getString("error"), Toast.LENGTH_SHORT).show()
-                        return@runOnUiThread
+                val cuerpo = response.body?.string()
+                Log.e("LOGIN_RESPONSE", "Respuesta cruda del servidor:\n$cuerpo")
+
+                try {
+                    val json = JSONObject(cuerpo ?: "{}")
+
+                    runOnUiThread {
+                        if (json.has("error")) {
+                            Toast.makeText(this@LoginActivity, json.getString("error"), Toast.LENGTH_SHORT).show()
+                            return@runOnUiThread
+                        }
+
+                        val usuario = json.getJSONObject("usuario")
+                        val rol = usuario.getString("rol")
+                        val mensaje = json.optString("mensaje")
+
+                        Toast.makeText(this@LoginActivity, mensaje, Toast.LENGTH_SHORT).show()
+
+                        when (rol) {
+                            "usuario" -> startActivity(Intent(this@LoginActivity, PanelUsuarioActivity::class.java))
+                            "2" -> startActivity(Intent(this@LoginActivity, LandingClienteActivity::class.java))
+                            else -> Toast.makeText(this@LoginActivity, "Rol no reconocido", Toast.LENGTH_SHORT).show()
+                        }
                     }
-
-                    val usuario = json.getJSONObject("usuario")
-                    val rol = usuario.getString("rol")
-                    val mensaje = json.optString("mensaje")
-
-                    Toast.makeText(this@LoginActivity, mensaje, Toast.LENGTH_SHORT).show()
-
-                    when (rol) {
-                        "usuario" -> startActivity(Intent(this@LoginActivity, PanelUsuarioActivity::class.java))
-                        "2" -> startActivity(Intent(this@LoginActivity, LandingClienteActivity::class.java))
-                        else -> Toast.makeText(this@LoginActivity, "Rol no reconocido", Toast.LENGTH_SHORT).show()
+                } catch (e: JSONException) {
+                    Log.e("ERROR_JSON", "Error al convertir respuesta: ${e.message}")
+                    runOnUiThread {
+                        Toast.makeText(this@LoginActivity, "Respuesta inválida del servidor", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
