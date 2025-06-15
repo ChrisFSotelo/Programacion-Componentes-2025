@@ -193,16 +193,4 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 }
-class PanelUsuarioActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_panel_usuario)
-    }
-}
 
-class LandingClienteActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_landing_cliente)
-    }
-}

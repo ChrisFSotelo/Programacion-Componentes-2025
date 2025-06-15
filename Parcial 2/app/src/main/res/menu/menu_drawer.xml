@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_inicio" android:title="Inicio" android:icon="@drawable/ic_home" />
+    <item android:id="@+id/nav_productos" android:title="Productos" android:icon="@drawable/ic_box" />
+    <item android:id="@+id/nav_usuarios" android:title="Usuarios" android:icon="@drawable/ic_user" />
+    <item android:id="@+id/nav_nosotros" android:title="Nosotros" android:icon="@drawable/ic_group" />
+    <item android:id="@+id/nav_contacto" android:title="Contacto" android:icon="@drawable/ic_email" />
+    <item android:id="@+id/nav_logout" android:title="Cerrar Sesión" android:icon="@drawable/ic_logout" />
+</menu>
