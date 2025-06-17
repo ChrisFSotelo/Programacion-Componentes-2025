@@ -39,23 +39,35 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Correo electrónico">
+                android:hint="Correo electrónico"
+                app:boxStrokeColor="@color/outline_box_stroke_color"
+                app:hintTextColor="@color/outline_box_stroke_color"
+                app:boxBackgroundMode="outline"
+                >
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_correo_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress"
+                    android:textColor="#333333"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Contraseña">
+                android:hint="Contraseña"
+                app:boxStrokeColor="@color/outline_box_stroke_color"
+                app:hintTextColor="@color/outline_box_stroke_color"
+                app:boxBackgroundMode="outline">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_clave_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword"
+                    android:textColor="#333333"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -97,44 +109,64 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre">
+                android:hint="Nombre"
+                app:boxStrokeColor="@color/outline_box_stroke_color"
+                app:hintTextColor="@color/outline_box_stroke_color"
+                app:boxBackgroundMode="outline">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_nombre"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Apellido">
+                android:hint="Apellido"
+                app:boxStrokeColor="@color/outline_box_stroke_color"
+                app:hintTextColor="@color/outline_box_stroke_color"
+                app:boxBackgroundMode="outline">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_apellido"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_width="match_parent"
+                    android:textColor="#333333"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Correo electrónico">
+                android:hint="Correo electrónico"
+                app:boxStrokeColor="@color/outline_box_stroke_color"
+                app:hintTextColor="@color/outline_box_stroke_color"
+                app:boxBackgroundMode="outline">
                 <com.google.android.material.textfield.TextInputEditText
-                     android:id="@+id/et_correo_registro"
-                     android:inputType="textEmailAddress"
-                     android:layout_height="wrap_content"
-                     android:layout_width="match_parent"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:id="@+id/et_correo_registro"
+                    android:inputType="textEmailAddress"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:textColor="#333333"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:hint="Contraseña"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                android:hint="Contraseña"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/outline_box_stroke_color"
+                app:hintTextColor="@color/outline_box_stroke_color"
+                app:boxBackgroundMode="outline">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_clave_registro"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <Button

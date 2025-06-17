@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Parcial 2"
+rootProject.name = "Urban Pixel"
 include(":app")
  
