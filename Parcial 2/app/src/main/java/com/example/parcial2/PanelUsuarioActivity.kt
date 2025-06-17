@@ -12,6 +12,7 @@ import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import com.example.parcial2.view.producto.ProductosFragment
 import com.example.parcial2.view.usuario.UsuariosFragment
 
 class PanelUsuarioActivity : AppCompatActivity() {
