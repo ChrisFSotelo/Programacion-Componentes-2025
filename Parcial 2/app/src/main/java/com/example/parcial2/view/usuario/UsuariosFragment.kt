@@ -48,7 +48,8 @@ class UsuariosFragment : Fragment() {
         adapter = UsuarioAdapter(
             usuarios,
             onEditarClick = { usuario -> abrirModalEditar(usuario) },
-            onEliminarClick = { usuario -> confirmarEliminacion(usuario.id) }
+            onEliminarClick = { usuario -> confirmarEliminacion(usuario.id) },
+            onEstadoClick = { usuario -> actualizarEstadoUsuario(usuario.id) }
         )
         recyclerUsuarios.adapter = adapter
 
@@ -119,7 +120,7 @@ class UsuariosFragment : Fragment() {
                         val correo = etCorreo.text.toString().trim()
                         val clave = etClave.text.toString().trim()
 
-                        if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || clave.isEmpty()) {
+                        if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty()) {
                             Toast.makeText(requireContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show()
                             return@setOnClickListener
                         }
@@ -170,12 +171,141 @@ class UsuariosFragment : Fragment() {
             .show()
     }
 
+    private fun actualizarEstadoUsuario(idUsuario: Int) {
+        val usuario = usuarios.find { it.id == idUsuario } ?: return
+        val estadoActual = if (usuario.idEstado == "Activo") 1 else 0
+        val nuevoEstado = if (estadoActual == 1) 0 else 1
+
+        val formBody = FormBody.Builder()
+            .add("id", idUsuario.toString())
+            .add("estado", estadoActual.toString()) // el backend espera el estado actual
+            .build()
+
+        val request = okhttp3.Request.Builder()
+            .url("http://192.168.1.7/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=actualizarEstado")
+            .post(formBody)
+            .build()
+
+        OkHttpClient().newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                activity?.runOnUiThread {
+                    Toast.makeText(requireContext(), "Error de red", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                activity?.runOnUiThread {
+                    if (response.isSuccessful) {
+                        val respuesta = response.body?.string()
+                        try {
+                            val json = JSONObject(respuesta)
+                            if (json.has("mensaje")) {
+                                Toast.makeText(requireContext(), json.getString("mensaje"), Toast.LENGTH_SHORT).show()
+                                obtenerUsuarios() // actualiza la lista
+                            } else {
+                                Toast.makeText(requireContext(), json.optString("error", "Error al actualizar"), Toast.LENGTH_SHORT).show()
+                            }
+                        } catch (e: Exception) {
+                            Toast.makeText(requireContext(), "Error al procesar respuesta", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(requireContext(), "Error: ${response.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
 
 
 
     private fun abrirModalEditar(usuario: Usuario) {
-        // TODO: Implementar
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog_form_cliente, null)
+
+        val etNombre = dialogView.findViewById<EditText>(R.id.etNombre)
+        val etCorreo = dialogView.findViewById<EditText>(R.id.etCorreo)
+        val etApellido = dialogView.findViewById<EditText>(R.id.etApellido)
+        val etClave = dialogView.findViewById<EditText>(R.id.etClave)
+
+        // Rellenar con datos existentes
+        etNombre.setText(usuario.nombre)
+        etApellido.setText(usuario.apellido)
+        etCorreo.setText(usuario.correo)
+        etClave.setText(usuario.clave)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle("Actualizar Cliente")
+            .setView(dialogView)
+            .setPositiveButton("Actualizar", null)
+            .setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
+            .create()
+
+        dialog.setOnShowListener {
+            val btnGuardar = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            btnGuardar.setOnClickListener {
+                val nombre = etNombre.text.toString().trim()
+                val apellido = etApellido.text.toString().trim()
+                val correo = etCorreo.text.toString().trim()
+                val clave = etClave.text.toString().trim()
+
+                if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || clave.isEmpty()) {
+                    Toast.makeText(requireContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                actualizarCliente(usuario.id, nombre, apellido, correo, clave, dialog)
+            }
+        }
+
+        dialog.show()
     }
+    private fun actualizarCliente(
+        id: Int,
+        nombre: String,
+        apellido: String,
+        correo: String,
+        clave: String,
+        dialog: AlertDialog
+    ) {
+        val formBody = FormBody.Builder()
+            .add("id", id.toString())
+            .add("nombre", nombre)
+            .add("apellido", apellido)
+            .add("correo", correo)
+            .add("clave", clave)
+            .build()
+
+        val request = okhttp3.Request.Builder()
+            .url("http://192.168.1.7/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=actualizar")
+            .post(formBody)
+            .build()
+
+        OkHttpClient().newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                activity?.runOnUiThread {
+                    Toast.makeText(requireContext(), "Error de red", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                activity?.runOnUiThread {
+                    if (response.isSuccessful) {
+                        val json = JSONObject(response.body?.string() ?: "")
+                        if (json.has("mensaje")) {
+                            Toast.makeText(requireContext(), json.getString("mensaje"), Toast.LENGTH_SHORT).show()
+                            dialog.dismiss()
+                            obtenerUsuarios() // Recargar lista
+                        } else {
+                            Toast.makeText(requireContext(), json.optString("error", "Error al actualizar"), Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(requireContext(), "Error: ${response.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
 
     private fun confirmarEliminacion(idUsuario: Int) {
         // TODO: Implementar

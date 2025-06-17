@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Activo"
-            android:enabled="false"
+            android:enabled="true"
             android:backgroundTint="#6c7e49"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
@@ -58,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Editar"
+                android:enabled="true"
                 android:backgroundTint="#ddcf68"
                 android:textColor="#FFFFFF"
                 android:layout_marginEnd="8dp" />
@@ -66,6 +67,7 @@
                 android:id="@+id/btnEliminar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:enabled="true"
                 android:text="Eliminar"
                 android:backgroundTint="#813839"
                 android:textColor="#FFFFFF" />

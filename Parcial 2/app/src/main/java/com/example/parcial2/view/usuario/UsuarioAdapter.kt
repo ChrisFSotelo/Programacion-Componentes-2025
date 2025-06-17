@@ -1,20 +1,27 @@
 package com.example.parcial2.view.usuario
 
+import android.app.ProgressDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.parcial2.R
 import com.example.parcial2.model.Usuario
+import org.json.JSONObject
 
 class UsuarioAdapter(
     private val usuarios: List<Usuario>,
     private val onEditarClick: (Usuario) -> Unit,
-    private val onEliminarClick: (Usuario) -> Unit
+    private val onEliminarClick: (Usuario) -> Unit,
+    private val onEstadoClick: (Usuario) -> Unit
 ) : RecyclerView.Adapter<UsuarioAdapter.UsuarioViewHolder>() {
 
     inner class UsuarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -51,6 +58,7 @@ class UsuarioAdapter(
         // Acciones
         holder.btnEditar.setOnClickListener { onEditarClick(usuario) }
         holder.btnEliminar.setOnClickListener { onEliminarClick(usuario) }
+        holder.btnEstado.setOnClickListener { onEstadoClick(usuario) }
     }
 
 
