@@ -234,7 +234,7 @@ class ProductosFragment : Fragment() {
             .build()
 
         val request = okhttp3.Request.Builder()
-            .url("http://192.168.1.7/Urban-Pixel/src/features/productos/controller/ProductoControlador.php?accion=actualizar_producto")
+            .url("http://192.168.1.7/Urban-Pixel/src/features/productos/controller/ProductoControlador.php?accion=actualizar")
             .post(formBody)
             .build()
 
