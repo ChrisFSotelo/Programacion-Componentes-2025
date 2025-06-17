@@ -14,6 +14,7 @@ media3CommonKtx = "1.7.1"
 volley = "1.2.1"
 toolsCore = "1.0.0-alpha13"
 runner = "1.6.1"
+filamentAndroid = "1.17.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +30,7 @@ androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
 androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+filament-android = { group = "com.google.ar.sceneform", name = "filament-android", version.ref = "filamentAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
