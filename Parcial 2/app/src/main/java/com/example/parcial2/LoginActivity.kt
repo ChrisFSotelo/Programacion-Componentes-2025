@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         val request = Request.Builder()
-            .url("http://192.168.101.71/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=registrar")
+            .url("http://192.168.1.7/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=registrar")
             .post(formBody)
             .build()
 

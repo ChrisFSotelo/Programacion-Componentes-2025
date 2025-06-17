@@ -1,6 +1,8 @@
 package com.example.parcial2
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -9,6 +11,7 @@ import com.google.android.material.navigation.NavigationView
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import com.example.parcial2.view.usuario.UsuariosFragment
 
 class PanelUsuarioActivity : AppCompatActivity() {
@@ -64,7 +67,9 @@ class PanelUsuarioActivity : AppCompatActivity() {
                     .commit()
             }
 
-            drawerLayout.closeDrawers()
+            Handler(Looper.getMainLooper()).postDelayed({
+                drawerLayout.closeDrawer(GravityCompat.START)
+            }, 150)
             true
         }
     }

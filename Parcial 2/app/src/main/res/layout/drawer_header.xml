@@ -4,7 +4,6 @@
     android:layout_height="160dp"
     android:orientation="vertical"
     android:gravity="bottom"
-    android:background="#1b1a1a"
     android:padding="16dp">
 
     <ImageView
@@ -14,6 +13,7 @@
         android:contentDescription="User Image" />
 
     <TextView
+        android:background="@color/black"
         android:id="@+id/drawer_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

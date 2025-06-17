@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorItemSelected">#77301e</color>
+    <color name="colorItemPressed">#5a2720</color>
+    <color name="verde_estado">#64a429</color>
+    <color name="gris_estado">#b0b0b0</color> <!-- o el color que desees para "Inactivo" -->
 </resources>
