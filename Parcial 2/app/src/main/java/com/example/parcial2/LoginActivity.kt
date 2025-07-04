@@ -78,11 +78,14 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         OkHttpClient().newCall(request).enqueue(object : Callback {
+            @OptIn(UnstableApi::class)
             override fun onFailure(call: Call, e: IOException) {
+                Log.e("ERROR_OKHTTP", "Fallo de red: ${e.message}", e)
                 runOnUiThread {
-                    Toast.makeText(this@LoginActivity, "Error de red222", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Error de red: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
+
 
             @OptIn(UnstableApi::class)
             override fun onResponse(call: Call, response: Response) {
@@ -146,16 +149,19 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         val request = Request.Builder()
-            .url("http://192.168.1.7/Urban-Pixel/src/features/users/controller/UsuarioControlador.php?accion=autenticar")
+            .url("http://192.168.101.71/Urban-Pixel/src/features/users/controller/UsuarioControlador.php?accion=autenticar")
             .post(formBody)
             .build()
 
         OkHttpClient().newCall(request).enqueue(object : Callback {
+            @OptIn(UnstableApi::class)
             override fun onFailure(call: Call, e: IOException) {
+                Log.e("ERROR_OKHTTP", "Fallo de red: ${e.message}", e)
                 runOnUiThread {
-                    Toast.makeText(this@LoginActivity, "Error de red", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Error de red: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
+
 
             @OptIn(UnstableApi::class)
             override fun onResponse(call: Call, response: Response) {
@@ -178,7 +184,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this@LoginActivity, mensaje, Toast.LENGTH_SHORT).show()
 
                         when (rol) {
-                            "usuario" -> startActivity(Intent(this@LoginActivity, PanelUsuarioActivity::class.java))
+                            "1" -> startActivity(Intent(this@LoginActivity, PanelUsuarioActivity::class.java))
                             "2" -> startActivity(Intent(this@LoginActivity, LandingClienteActivity::class.java))
                             else -> Toast.makeText(this@LoginActivity, "Rol no reconocido", Toast.LENGTH_SHORT).show()
                         }

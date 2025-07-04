@@ -15,6 +15,7 @@ import androidx.core.view.GravityCompat
 import com.example.parcial2.view.categoria.CategoriasFragment
 import com.example.parcial2.view.producto.ProductosFragment
 import com.example.parcial2.view.usuario.UsuariosFragment
+import com.example.parcial2.view.ventas.VentasFragment
 
 class PanelUsuarioActivity : AppCompatActivity() {
 
@@ -55,7 +56,7 @@ class PanelUsuarioActivity : AppCompatActivity() {
                 R.id.nav_productos -> ProductosFragment()
                 R.id.nav_usuarios -> UsuariosFragment()
                 R.id.nav_categorias -> CategoriasFragment()
-                R.id.nav_contacto -> ContactoFragment()
+                R.id.nav_ventas -> VentasFragment()
                 R.id.nav_logout -> {
                     finish()
                     return@setNavigationItemSelectedListener true
