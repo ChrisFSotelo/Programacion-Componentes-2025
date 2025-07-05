@@ -12,7 +12,8 @@ import com.example.parcial2.model.Factura
 class FacturaAdapter(
     private val facturas: List<Factura>,
     private val onInfoClick: (Factura) -> Unit,
-    private val onEliminarClick: (Factura) -> Unit
+    private val onEliminarClick: (Factura) -> Unit,
+    private val onActualizarEstado: (Factura, Int) -> Unit
 ) : RecyclerView.Adapter<FacturaAdapter.FacturaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FacturaViewHolder {
@@ -30,6 +31,7 @@ class FacturaAdapter(
         holder.txtHora.text = "Hora: ${factura.hora}"
         holder.txtTotal.text = "Total: $${String.format("%,d", factura.total)}"
 
+        // Texto y color del estado actual
         holder.btnEstado.text = when (factura.estado) {
             1 -> "En proceso"
             2 -> "Enviado"
@@ -39,16 +41,28 @@ class FacturaAdapter(
 
         holder.btnEstado.setBackgroundColor(
             when (factura.estado) {
-                1 -> 0xFF2196F3.toInt() // azul
-                2 -> 0xFF4CAF50.toInt() // verde
-                3 -> 0xFFF44336.toInt() // rojo
-                else -> 0xFF9E9E9E.toInt() // gris
+                1 -> 0xFF2196F3.toInt() // Azul
+                2 -> 0xFF4CAF50.toInt() // Verde
+                3 -> 0xFFF44336.toInt() // Rojo
+                else -> 0xFF9E9E9E.toInt() // Gris
             }
         )
+
+        // ✅ Evento para actualizar estado al hacer clic
+        holder.btnEstado.setOnClickListener {
+            val nuevoEstado = when (factura.estado) {
+                1 -> 2
+                2 -> 3
+                3 -> 1
+                else -> 1
+            }
+            onActualizarEstado(factura, nuevoEstado)
+        }
 
         holder.btnInfo.setOnClickListener { onInfoClick(factura) }
         holder.btnEliminar.setOnClickListener { onEliminarClick(factura) }
     }
+
 
     override fun getItemCount(): Int = facturas.size
 

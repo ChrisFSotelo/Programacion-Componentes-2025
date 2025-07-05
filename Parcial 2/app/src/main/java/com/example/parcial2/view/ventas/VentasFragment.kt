@@ -4,18 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsetsAnimation
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
+import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.parcial2.R
 import com.example.parcial2.adapter.FacturaAdapter
 import com.example.parcial2.model.Factura
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
 import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 
 class VentasFragment : Fragment() {
 
@@ -35,11 +43,13 @@ class VentasFragment : Fragment() {
         adapter = FacturaAdapter(
             listaFacturas,
             onInfoClick = { factura ->
-                Toast.makeText(requireContext(), "Detalle: ${factura.id}", Toast.LENGTH_SHORT).show()
+                obtenerDetallesFactura(factura.id)
             },
             onEliminarClick = { factura ->
                 Toast.makeText(requireContext(), "Eliminar ID: ${factura.id}", Toast.LENGTH_SHORT).show()
-                // Aquí podrías mostrar confirmación y luego hacer petición DELETE si lo necesitas
+            },
+            onActualizarEstado = { factura, nuevoEstado ->
+                actualizarEstadoVenta(factura.id, nuevoEstado)
             }
         )
 
@@ -54,7 +64,7 @@ class VentasFragment : Fragment() {
     }
 
     private fun obtenerFacturas() {
-        val url = "http://192.168.101.71/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=listarVentas"
+        val url = "http://192.168.0.16/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=listarVentas"
 
         val request = JsonArrayRequest(Request.Method.GET, url, null,
             { response ->
@@ -95,5 +105,90 @@ class VentasFragment : Fragment() {
 
         Volley.newRequestQueue(requireContext()).add(request)
     }
+
+    private fun obtenerDetallesFactura(idFactura: Int) {
+        val url = "http://192.168.0.16/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=obtenerDetallesVenta&idVenta=$idFactura"
+
+        val request = com.android.volley.toolbox.JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                try {
+                    if (response.has("error")) {
+                        Toast.makeText(requireContext(), "Error: ${response.getString("error")}", Toast.LENGTH_SHORT).show()
+                        return@JsonObjectRequest
+                    }
+
+                    val facturaCompleta = com.example.parcial2.model.FacturaCompleta(
+                        id = response.getInt("id"),
+                        fecha = response.getString("fecha"),
+                        hora = response.getString("hora"),
+                        subtotal = response.getInt("subtotal"),
+                        iva = response.getDouble("iva").toFloat(),
+                        total = response.getInt("total"),
+                        idCliente = response.getInt("idCliente"),
+                        ciudad = response.getString("ciudad"),
+                        direccion = response.getString("direccion"),
+                        estado = response.getInt("estado"),
+                        cliente = response.getString("cliente"),
+                        productos = response.getString("productos").split(","),
+                        preciosUnitarios = response.getString("preciosUnitarios").split(",").map { it.toIntOrNull() ?: 0 },
+                        cantidades = response.getString("cantidades").split(",").map { it.toIntOrNull() ?: 0 },
+                        precioVentas = response.getString("precioVentas").split(",").map { it.toIntOrNull() ?: 0 }
+                    )
+
+                    val dialog = FacturaDetalleDialogFragment(facturaCompleta)
+                    dialog.show(parentFragmentManager, "detalle_factura")
+
+                } catch (e: JSONException) {
+                    Toast.makeText(requireContext(), "Error al parsear detalle", Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
+                }
+            },
+            { error ->
+                Toast.makeText(requireContext(), "Error al obtener detalles", Toast.LENGTH_SHORT).show()
+                error.printStackTrace()
+            }
+        )
+
+        Volley.newRequestQueue(requireContext()).add(request)
+    }
+
+    private fun actualizarEstadoVenta(idVenta: Int, estadoNuevo: Int) {
+        val formBody = FormBody.Builder()
+            .add("idVenta", idVenta.toString())
+            .add("estadoNuevo", estadoNuevo.toString())
+            .build()
+
+        val request = okhttp3.Request.Builder()
+            .url("http://192.168.0.16/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=actualizarEstadoVenta")
+            .post(formBody)
+            .build()
+
+        OkHttpClient().newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                requireActivity().runOnUiThread {
+                    Toast.makeText(requireContext(), "Error de red: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: okhttp3.Response) {
+                val body = response.body?.string()
+                requireActivity().runOnUiThread {
+                    try {
+                        val json = JSONObject(body ?: "{}")
+                        if (json.has("mensaje")) {
+                            Toast.makeText(requireContext(), json.getString("mensaje"), Toast.LENGTH_SHORT).show()
+                            obtenerFacturas() // Recargar datos
+                        } else if (json.has("error")) {
+                            Toast.makeText(requireContext(), json.getString("error"), Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), "Error al procesar respuesta", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
 
 }
