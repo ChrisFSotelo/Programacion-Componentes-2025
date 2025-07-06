@@ -69,6 +69,13 @@
                     android:textColor="#333333"
                     />
             </com.google.android.material.textfield.TextInputLayout>
+            <CheckBox
+                android:id="@+id/chk_recordar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recordar usuario"
+                android:textColor="#333333"
+                android:layout_marginTop="8dp"/>
 
             <Button
                 android:id="@+id/btn_iniciar_sesion"

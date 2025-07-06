@@ -27,21 +27,24 @@ class LoginActivity : AppCompatActivity() {
         viewFlipper = findViewById(R.id.form_flipper)
         viewFlipper.displayedChild = 0
 
+        val prefs = getSharedPreferences("datos_usuario", MODE_PRIVATE)
+        val correoGuardado = prefs.getString("correo", "")
+        val claveGuardada = prefs.getString("clave", "")
+        val recordar = prefs.getBoolean("recordar", false)
+
+        findViewById<EditText>(R.id.et_correo_login).setText(correoGuardado)
+        findViewById<EditText>(R.id.et_clave_login).setText(claveGuardada)
+        findViewById<CheckBox>(R.id.chk_recordar).isChecked = recordar
+
+        // animaciones y navegación entre formularios
         viewFlipper.inAnimation = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left)
         viewFlipper.outAnimation = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right)
 
-
-        val goToRegister: TextView = findViewById(R.id.go_to_register)
-        val goToLogin: TextView = findViewById(R.id.go_to_login)
-
-        goToRegister.setOnClickListener {
-            Log.d("holaaa", "Click en goToRegister")
-            Toast.makeText(this, "Ir a registro", Toast.LENGTH_SHORT).show()
+        findViewById<TextView>(R.id.go_to_register).setOnClickListener {
             viewFlipper.displayedChild = 1
         }
 
-        goToLogin.setOnClickListener {
-            Toast.makeText(this, "Volver a login", Toast.LENGTH_SHORT).show()
+        findViewById<TextView>(R.id.go_to_login).setOnClickListener {
             viewFlipper.displayedChild = 0
         }
 
@@ -53,6 +56,7 @@ class LoginActivity : AppCompatActivity() {
             registrarUsuario()
         }
     }
+
 
     private fun registrarUsuario() {
         val nombre = findViewById<EditText>(R.id.et_nombre).text.toString()
@@ -137,6 +141,7 @@ class LoginActivity : AppCompatActivity() {
     private fun iniciarSesion() {
         val correo = findViewById<EditText>(R.id.et_correo_login).text.toString()
         val clave = findViewById<EditText>(R.id.et_clave_login).text.toString()
+        val chkRecordar = findViewById<CheckBox>(R.id.chk_recordar).isChecked
 
         if (correo.isBlank() || clave.isBlank()) {
             Toast.makeText(this, "Correo y clave obligatorios", Toast.LENGTH_SHORT).show()
@@ -156,21 +161,17 @@ class LoginActivity : AppCompatActivity() {
         OkHttpClient().newCall(request).enqueue(object : Callback {
             @OptIn(UnstableApi::class)
             override fun onFailure(call: Call, e: IOException) {
-                Log.e("ERROR_OKHTTP", "Fallo de red: ${e.message}", e)
+                Log.e("LOGIN_ERROR", "Fallo de red: ${e.message}", e) // <-- Esta línea es clave
                 runOnUiThread {
                     Toast.makeText(this@LoginActivity, "Error de red: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
 
-
-            @OptIn(UnstableApi::class)
             override fun onResponse(call: Call, response: Response) {
                 val cuerpo = response.body?.string()
-                Log.e("LOGIN_RESPONSE", "Respuesta cruda del servidor:\n$cuerpo")
 
                 try {
                     val json = JSONObject(cuerpo ?: "{}")
-
                     runOnUiThread {
                         if (json.has("error")) {
                             Toast.makeText(this@LoginActivity, json.getString("error"), Toast.LENGTH_SHORT).show()
@@ -181,6 +182,16 @@ class LoginActivity : AppCompatActivity() {
                         val rol = usuario.getString("rol")
                         val mensaje = json.optString("mensaje")
 
+                        val prefs = getSharedPreferences("datos_usuario", MODE_PRIVATE).edit()
+                        if (chkRecordar) {
+                            prefs.putString("correo", correo)
+                            prefs.putString("clave", clave)
+                            prefs.putBoolean("recordar", true)
+                        } else {
+                            prefs.clear() // No guardar nada si no está marcado
+                        }
+                        prefs.apply()
+
                         Toast.makeText(this@LoginActivity, mensaje, Toast.LENGTH_SHORT).show()
 
                         when (rol) {
@@ -190,7 +201,6 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                 } catch (e: JSONException) {
-                    Log.e("ERROR_JSON", "Error al convertir respuesta: ${e.message}")
                     runOnUiThread {
                         Toast.makeText(this@LoginActivity, "Respuesta inválida del servidor", Toast.LENGTH_SHORT).show()
                     }
