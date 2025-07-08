@@ -4,6 +4,7 @@
     android:layout_height="160dp"
     android:orientation="vertical"
     android:gravity="bottom"
+    android:background="@color/black"
     android:padding="16dp">
 
     <ImageView
@@ -13,12 +14,20 @@
         android:contentDescription="User Image" />
 
     <TextView
-        android:background="@color/black"
         android:id="@+id/drawer_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Usuario"
+        android:text="Nombre Apellido"
         android:textColor="@android:color/white"
         android:textSize="16sp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/drawer_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="correo@ejemplo.com"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp" />
 </LinearLayout>

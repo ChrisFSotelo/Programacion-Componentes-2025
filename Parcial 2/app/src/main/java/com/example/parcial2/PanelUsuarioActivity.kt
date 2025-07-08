@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -26,6 +27,11 @@ class PanelUsuarioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_panel_usuario)
+
+        val idUsuario = intent.getIntExtra("idUsuario", -1)
+        if (idUsuario != -1) {
+            cargarDatosUsuarioDrawer(idUsuario)
+        }
 
         drawerLayout = findViewById(R.id.drawerLayout)
         navigationView = findViewById(R.id.navigationView)
@@ -76,6 +82,35 @@ class PanelUsuarioActivity : AppCompatActivity() {
             true
         }
     }
+
+    private fun cargarDatosUsuarioDrawer(idUsuario: Int) {
+        val url = "http://192.168.1.9/Urban-Pixel/src/features/users/controller/UsuarioControlador.php?accion=obtenerPorId&id=$idUsuario"
+
+        val request = com.android.volley.toolbox.JsonObjectRequest(
+            com.android.volley.Request.Method.GET, url, null,
+            { response ->
+                if (!response.has("error")) {
+                    val nombre = response.getString("nombre")
+                    val apellido = response.getString("apellido")
+                    val correo = response.getString("correo")
+
+                    val headerView = navigationView.getHeaderView(0)
+                    val tvNombre = headerView.findViewById<TextView>(R.id.drawer_username)
+                    tvNombre.text = "$nombre $apellido"
+
+                    // Si tienes más TextViews, puedes hacer esto:
+                     val tvCorreo = headerView.findViewById<TextView>(R.id.drawer_email)
+                     tvCorreo.text = correo
+                }
+            },
+            { error ->
+                error.printStackTrace()
+            }
+        )
+
+        com.android.volley.toolbox.Volley.newRequestQueue(this).add(request)
+    }
+
 
     // Necesario para que el ícono funcione correctamente
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -61,7 +61,7 @@ class UsuariosFragment : Fragment() {
     }
 
     private fun obtenerUsuarios() {
-        val url = "http://192.168.1.7//Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=listar"
+        val url = "http://192.168.1.9//Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=listar"
 
         val queue = Volley.newRequestQueue(requireContext())
 
@@ -133,7 +133,7 @@ class UsuariosFragment : Fragment() {
                             .build()
 
                         val request = okhttp3.Request.Builder()
-                            .url("http://192.168.1.7/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=registrar")
+                            .url("http://192.168.1.9/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=registrar")
                             .post(formBody)
                             .build()
 
@@ -182,7 +182,7 @@ class UsuariosFragment : Fragment() {
             .build()
 
         val request = okhttp3.Request.Builder()
-            .url("http://192.168.1.7/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=actualizarEstado")
+            .url("http://192.168.1.9/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=actualizarEstado")
             .post(formBody)
             .build()
 
@@ -276,7 +276,7 @@ class UsuariosFragment : Fragment() {
             .build()
 
         val request = okhttp3.Request.Builder()
-            .url("http://192.168.1.7/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=actualizar")
+            .url("http://192.168.1.9/Urban-Pixel/src/features/users/controller/ClienteControlador.php?accion=actualizar")
             .post(formBody)
             .build()
 

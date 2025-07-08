@@ -1,5 +1,6 @@
 package com.example.parcial2.view.ventas
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,9 +47,16 @@ class VentasFragment : Fragment() {
                 obtenerDetallesFactura(factura.id)
             },
             onEliminarClick = { factura ->
-                Toast.makeText(requireContext(), "Eliminar ID: ${factura.id}", Toast.LENGTH_SHORT).show()
+                AlertDialog.Builder(requireContext())
+                    .setTitle("¿Eliminar venta?")
+                    .setMessage("¿Estás seguro de que deseas eliminar la venta con ID ${factura.id}?")
+                    .setPositiveButton("Sí") { _, _ ->
+                        eliminarVenta(factura.id)
+                    }
+                    .setNegativeButton("Cancelar", null)
+                    .show()
             },
-            onActualizarEstado = { factura, nuevoEstado ->
+                    onActualizarEstado = { factura, nuevoEstado ->
                 actualizarEstadoVenta(factura.id, nuevoEstado)
             }
         )
@@ -56,15 +64,21 @@ class VentasFragment : Fragment() {
         recyclerVentas.adapter = adapter
 
         view.findViewById<Button>(R.id.btnRegistrarVenta).setOnClickListener {
-            Toast.makeText(requireContext(), "Registrar Venta", Toast.LENGTH_SHORT).show()
-            // Aquí podrías abrir un modal o ir a pantalla de carrito
+            val dialog = RegistrarVentaDialogFragment()
+            dialog.ventaRegistradaListener = object : RegistrarVentaDialogFragment.VentaRegistradaListener {
+                override fun onVentaRegistrada() {
+                    obtenerFacturas()
+                }
+            }
+            dialog.show(parentFragmentManager, "registrar_venta")
+
         }
 
         obtenerFacturas()
     }
 
     private fun obtenerFacturas() {
-        val url = "http://192.168.0.16/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=listarVentas"
+        val url = "http://192.168.1.9/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=listarVentas"
 
         val request = JsonArrayRequest(Request.Method.GET, url, null,
             { response ->
@@ -107,7 +121,7 @@ class VentasFragment : Fragment() {
     }
 
     private fun obtenerDetallesFactura(idFactura: Int) {
-        val url = "http://192.168.0.16/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=obtenerDetallesVenta&idVenta=$idFactura"
+        val url = "http://192.168.1.9/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=obtenerDetallesVenta&idVenta=$idFactura"
 
         val request = com.android.volley.toolbox.JsonObjectRequest(
             Request.Method.GET, url, null,
@@ -160,7 +174,7 @@ class VentasFragment : Fragment() {
             .build()
 
         val request = okhttp3.Request.Builder()
-            .url("http://192.168.0.16/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=actualizarEstadoVenta")
+            .url("http://192.168.1.9/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=actualizarEstadoVenta")
             .post(formBody)
             .build()
 
@@ -188,6 +202,28 @@ class VentasFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun eliminarVenta(idVenta: Int) {
+        val url = "http://192.168.1.9/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=eliminarVenta&id=$idVenta"
+
+        val request = com.android.volley.toolbox.JsonObjectRequest(
+            com.android.volley.Request.Method.GET, url, null,
+            { response ->
+                if (response.has("mensaje")) {
+                    Toast.makeText(requireContext(), response.getString("mensaje"), Toast.LENGTH_SHORT).show()
+                    obtenerFacturas() // recarga la lista
+                } else if (response.has("error")) {
+                    Toast.makeText(requireContext(), "Error: ${response.getString("error")}", Toast.LENGTH_SHORT).show()
+                }
+            },
+            { error ->
+                error.printStackTrace()
+                Toast.makeText(requireContext(), "Error al eliminar venta", Toast.LENGTH_SHORT).show()
+            }
+        )
+
+        Volley.newRequestQueue(requireContext()).add(request)
     }
 
 

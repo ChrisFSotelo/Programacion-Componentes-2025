@@ -62,7 +62,7 @@ class ProductosFragment : Fragment() {
     }
 
     private fun obtenerProductos() {
-        val url = "http://192.168.1.7/Urban-Pixel/src/features/productos/controller/ProductoControlador.php?accion=listar"
+        val url = "http://192.168.1.9/Urban-Pixel/src/features/productos/controller/ProductoControlador.php?accion=listar"
 
         val queue = Volley.newRequestQueue(requireContext())
         val request = JsonArrayRequest(
@@ -128,7 +128,7 @@ class ProductosFragment : Fragment() {
                             .build()
 
                         val request = okhttp3.Request.Builder()
-                            .url("http://192.168.1.7/Urban-Pixel/src/features/productos/controller/ProductoControlador.php?accion=registrar_producto")
+                            .url("http://192.168.1.9/Urban-Pixel/src/features/productos/controller/ProductoControlador.php?accion=registrar_producto")
                             .post(form)
                             .build()
 
@@ -234,7 +234,7 @@ class ProductosFragment : Fragment() {
             .build()
 
         val request = okhttp3.Request.Builder()
-            .url("http://192.168.1.7/Urban-Pixel/src/features/productos/controller/ProductoControlador.php?accion=actualizar")
+            .url("http://192.168.1.9/Urban-Pixel/src/features/productos/controller/ProductoControlador.php?accion=actualizar")
             .post(formBody)
             .build()
 
@@ -266,7 +266,7 @@ class ProductosFragment : Fragment() {
 
 
     private fun cargarCategorias() {
-        val url = "http://192.168.1.7/Urban-Pixel/src/features/categorias/controller/CategoriaControlador.php?accion=listar"
+        val url = "http://192.168.1.9/Urban-Pixel/src/features/categorias/controller/CategoriaControlador.php?accion=listar"
 
         val request = JsonArrayRequest(Request.Method.GET, url, null,
             { response ->

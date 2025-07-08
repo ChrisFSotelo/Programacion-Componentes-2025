@@ -154,7 +154,7 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         val request = Request.Builder()
-            .url("http://192.168.0.16/Urban-Pixel/src/features/users/controller/UsuarioControlador.php?accion=autenticar")
+            .url("http://192.168.1.9/Urban-Pixel/src/features/users/controller/UsuarioControlador.php?accion=autenticar")
             .post(formBody)
             .build()
 
@@ -180,7 +180,9 @@ class LoginActivity : AppCompatActivity() {
 
                         val usuario = json.getJSONObject("usuario")
                         val rol = usuario.getString("rol")
+                        val idUsuario = usuario.getInt("id") // 👈 Extrae el ID
                         val mensaje = json.optString("mensaje")
+
 
                         val prefs = getSharedPreferences("datos_usuario", MODE_PRIVATE).edit()
                         if (chkRecordar) {
@@ -195,7 +197,10 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this@LoginActivity, mensaje, Toast.LENGTH_SHORT).show()
 
                         when (rol) {
-                            "1" -> startActivity(Intent(this@LoginActivity, PanelUsuarioActivity::class.java))
+                            "1" -> {
+                                val intent = Intent(this@LoginActivity, PanelUsuarioActivity::class.java)
+                                intent.putExtra("idUsuario", idUsuario)
+                                startActivity(intent)                            }
                             "2" -> startActivity(Intent(this@LoginActivity, LandingClienteActivity::class.java))
                             else -> Toast.makeText(this@LoginActivity, "Rol no reconocido", Toast.LENGTH_SHORT).show()
                         }

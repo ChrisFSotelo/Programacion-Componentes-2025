@@ -61,7 +61,7 @@ class CategoriasFragment : Fragment() {
     }
 
     private fun obtenerCategorias() {
-        val url = "http://192.168.1.7/Urban-Pixel/src/features/categorias/controller/CategoriaControlador.php?accion=listar"
+        val url = "http://192.168.1.9/Urban-Pixel/src/features/categorias/controller/CategoriaControlador.php?accion=listar"
 
         val request = JsonArrayRequest(Request.Method.GET, url, null,
             { response ->
@@ -158,7 +158,7 @@ class CategoriasFragment : Fragment() {
                     .build()
 
                 val request = okhttp3.Request.Builder()
-                    .url("http://192.168.1.7/Urban-Pixel/src/features/categorias/controller/CategoriaControlador.php?accion=actualizar")
+                    .url("http://192.168.1.9/Urban-Pixel/src/features/categorias/controller/CategoriaControlador.php?accion=actualizar")
                     .post(form)
                     .build()
 
@@ -201,7 +201,7 @@ class CategoriasFragment : Fragment() {
 
     private fun eliminarCategoria(id: Int) {
 
-        val url = "http://192.168.1.7/Urban-Pixel/src/features/categorias/controller/CategoriaControlador.php?accion=eliminar&id=$id"
+        val url = "http://192.168.1.9/Urban-Pixel/src/features/categorias/controller/CategoriaControlador.php?accion=eliminar&id=$id"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
