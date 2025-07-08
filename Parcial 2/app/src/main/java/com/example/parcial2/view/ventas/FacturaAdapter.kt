@@ -13,7 +13,8 @@ class FacturaAdapter(
     private val facturas: List<Factura>,
     private val onInfoClick: (Factura) -> Unit,
     private val onEliminarClick: (Factura) -> Unit,
-    private val onActualizarEstado: (Factura, Int) -> Unit
+    private val onActualizarEstado: (Factura, Int) -> Unit,
+    private val mostrarCliente: Boolean = true // 👈 nuevo parámetro
 ) : RecyclerView.Adapter<FacturaAdapter.FacturaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FacturaViewHolder {
@@ -25,13 +26,18 @@ class FacturaAdapter(
     override fun onBindViewHolder(holder: FacturaViewHolder, position: Int) {
         val factura = facturas[position]
 
-        holder.txtCliente.text = "Cliente: ${factura.cliente}"
+        if (mostrarCliente) {
+            holder.txtCliente.visibility = View.VISIBLE
+            holder.txtCliente.text = "Cliente: ${factura.cliente}"
+        } else {
+            holder.txtCliente.visibility = View.GONE
+        }
+
         holder.txtProductos.text = "Productos: ${factura.productos}"
         holder.txtFecha.text = "Fecha: ${factura.fecha}"
         holder.txtHora.text = "Hora: ${factura.hora}"
         holder.txtTotal.text = "Total: $${String.format("%,d", factura.total)}"
 
-        // Texto y color del estado actual
         holder.btnEstado.text = when (factura.estado) {
             1 -> "En proceso"
             2 -> "Enviado"
@@ -41,14 +47,13 @@ class FacturaAdapter(
 
         holder.btnEstado.setBackgroundColor(
             when (factura.estado) {
-                1 -> 0xFF2196F3.toInt() // Azul
-                2 -> 0xFF4CAF50.toInt() // Verde
-                3 -> 0xFFF44336.toInt() // Rojo
-                else -> 0xFF9E9E9E.toInt() // Gris
+                1 -> 0xFF2196F3.toInt()
+                2 -> 0xFF4CAF50.toInt()
+                3 -> 0xFFF44336.toInt()
+                else -> 0xFF9E9E9E.toInt()
             }
         )
 
-        // ✅ Evento para actualizar estado al hacer clic
         holder.btnEstado.setOnClickListener {
             val nuevoEstado = when (factura.estado) {
                 1 -> 2
@@ -62,7 +67,6 @@ class FacturaAdapter(
         holder.btnInfo.setOnClickListener { onInfoClick(factura) }
         holder.btnEliminar.setOnClickListener { onEliminarClick(factura) }
     }
-
 
     override fun getItemCount(): Int = facturas.size
 

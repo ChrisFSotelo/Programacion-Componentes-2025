@@ -5,23 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsetsAnimation
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.parcial2.R
 import com.example.parcial2.adapter.FacturaAdapter
 import com.example.parcial2.model.Factura
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
+import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
@@ -31,6 +26,8 @@ class VentasFragment : Fragment() {
     private lateinit var recyclerVentas: RecyclerView
     private lateinit var adapter: FacturaAdapter
     private val listaFacturas = mutableListOf<Factura>()
+    private var rol: String = ""
+    private var idCliente: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,53 +38,68 @@ class VentasFragment : Fragment() {
         recyclerVentas = view.findViewById(R.id.recyclerVentas)
         recyclerVentas.layoutManager = LinearLayoutManager(requireContext())
 
+        // Obtener datos del usuario
+        val prefs = requireActivity().getSharedPreferences("datos_usuario", android.content.Context.MODE_PRIVATE)
+        rol = prefs.getString("rol", "") ?: ""
+        idCliente = prefs.getInt("id", -1)
+
+        // Adaptador
         adapter = FacturaAdapter(
-            listaFacturas,
-            onInfoClick = { factura ->
-                obtenerDetallesFactura(factura.id)
-            },
+            facturas = listaFacturas,
+            onInfoClick = { factura -> obtenerDetallesFactura(factura.id) },
             onEliminarClick = { factura ->
-                AlertDialog.Builder(requireContext())
-                    .setTitle("¿Eliminar venta?")
-                    .setMessage("¿Estás seguro de que deseas eliminar la venta con ID ${factura.id}?")
-                    .setPositiveButton("Sí") { _, _ ->
-                        eliminarVenta(factura.id)
-                    }
-                    .setNegativeButton("Cancelar", null)
-                    .show()
+                if (rol != "2") {
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("¿Eliminar venta?")
+                        .setMessage("¿Estás seguro de eliminar la venta con ID ${factura.id}?")
+                        .setPositiveButton("Sí") { _, _ -> eliminarVenta(factura.id) }
+                        .setNegativeButton("Cancelar", null)
+                        .show()
+                }
             },
-                    onActualizarEstado = { factura, nuevoEstado ->
-                actualizarEstadoVenta(factura.id, nuevoEstado)
-            }
+            onActualizarEstado = { factura, nuevoEstado ->
+                if (rol != "2") {
+                    actualizarEstadoVenta(factura.id, nuevoEstado)
+                }
+            },
+            mostrarCliente = rol != "2" // Mostrar nombre del cliente solo si NO es cliente
         )
 
         recyclerVentas.adapter = adapter
 
-        view.findViewById<Button>(R.id.btnRegistrarVenta).setOnClickListener {
-            val dialog = RegistrarVentaDialogFragment()
-            dialog.ventaRegistradaListener = object : RegistrarVentaDialogFragment.VentaRegistradaListener {
-                override fun onVentaRegistrada() {
-                    obtenerFacturas()
+        // Ocultar botón de registrar si es cliente
+        val btnRegistrar = view.findViewById<Button>(R.id.btnRegistrarVenta)
+        if (rol == "2") {
+            btnRegistrar.visibility = View.GONE
+        } else {
+            btnRegistrar.setOnClickListener {
+                val dialog = RegistrarVentaDialogFragment()
+                dialog.ventaRegistradaListener = object : RegistrarVentaDialogFragment.VentaRegistradaListener {
+                    override fun onVentaRegistrada() {
+                        obtenerFacturas()
+                    }
                 }
+                dialog.show(parentFragmentManager, "registrar_venta")
             }
-            dialog.show(parentFragmentManager, "registrar_venta")
-
         }
 
         obtenerFacturas()
     }
 
     private fun obtenerFacturas() {
-        val url = "http://192.168.1.9/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=listarVentas"
+        val url = if (rol == "2" && idCliente != -1) {
+            "http://192.168.1.9/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=listarCompras&idCliente=$idCliente"
+        } else {
+            "http://192.168.1.9/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=listarVentas"
+        }
 
         val request = JsonArrayRequest(Request.Method.GET, url, null,
             { response ->
                 listaFacturas.clear()
 
                 for (i in 0 until response.length()) {
-                    val obj = response.getJSONObject(i)
-
                     try {
+                        val obj = response.getJSONObject(i)
                         val factura = Factura(
                             id = obj.optString("id").toIntOrNull() ?: 0,
                             fecha = obj.optString("fecha"),
@@ -102,7 +114,6 @@ class VentasFragment : Fragment() {
                             cliente = obj.optString("cliente", "Desconocido"),
                             productos = obj.optString("productos", "Sin productos")
                         )
-
                         listaFacturas.add(factura)
                     } catch (e: JSONException) {
                         e.printStackTrace()
@@ -152,7 +163,6 @@ class VentasFragment : Fragment() {
 
                     val dialog = FacturaDetalleDialogFragment(facturaCompleta)
                     dialog.show(parentFragmentManager, "detalle_factura")
-
                 } catch (e: JSONException) {
                     Toast.makeText(requireContext(), "Error al parsear detalle", Toast.LENGTH_SHORT).show()
                     e.printStackTrace()
@@ -192,7 +202,7 @@ class VentasFragment : Fragment() {
                         val json = JSONObject(body ?: "{}")
                         if (json.has("mensaje")) {
                             Toast.makeText(requireContext(), json.getString("mensaje"), Toast.LENGTH_SHORT).show()
-                            obtenerFacturas() // Recargar datos
+                            obtenerFacturas()
                         } else if (json.has("error")) {
                             Toast.makeText(requireContext(), json.getString("error"), Toast.LENGTH_SHORT).show()
                         }
@@ -208,11 +218,11 @@ class VentasFragment : Fragment() {
         val url = "http://192.168.1.9/Urban-Pixel/src/features/factura/controller/FacturaControlador.php?accion=eliminarVenta&id=$idVenta"
 
         val request = com.android.volley.toolbox.JsonObjectRequest(
-            com.android.volley.Request.Method.GET, url, null,
+            Request.Method.GET, url, null,
             { response ->
                 if (response.has("mensaje")) {
                     Toast.makeText(requireContext(), response.getString("mensaje"), Toast.LENGTH_SHORT).show()
-                    obtenerFacturas() // recarga la lista
+                    obtenerFacturas()
                 } else if (response.has("error")) {
                     Toast.makeText(requireContext(), "Error: ${response.getString("error")}", Toast.LENGTH_SHORT).show()
                 }
@@ -225,6 +235,4 @@ class VentasFragment : Fragment() {
 
         Volley.newRequestQueue(requireContext()).add(request)
     }
-
-
 }

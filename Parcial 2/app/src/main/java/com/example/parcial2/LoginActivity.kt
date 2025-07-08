@@ -185,13 +185,20 @@ class LoginActivity : AppCompatActivity() {
 
 
                         val prefs = getSharedPreferences("datos_usuario", MODE_PRIVATE).edit()
+
+                        prefs.putString("rol", rol)
+                        prefs.putInt("id", idUsuario)
+
                         if (chkRecordar) {
                             prefs.putString("correo", correo)
                             prefs.putString("clave", clave)
                             prefs.putBoolean("recordar", true)
                         } else {
-                            prefs.clear() // No guardar nada si no está marcado
+                            prefs.remove("correo")
+                            prefs.remove("clave")
+                            prefs.putBoolean("recordar", false)
                         }
+
                         prefs.apply()
 
                         Toast.makeText(this@LoginActivity, mensaje, Toast.LENGTH_SHORT).show()
@@ -201,7 +208,11 @@ class LoginActivity : AppCompatActivity() {
                                 val intent = Intent(this@LoginActivity, PanelUsuarioActivity::class.java)
                                 intent.putExtra("idUsuario", idUsuario)
                                 startActivity(intent)                            }
-                            "2" -> startActivity(Intent(this@LoginActivity, LandingClienteActivity::class.java))
+                            "2" -> {
+                                val intent = Intent(this@LoginActivity, LandingClienteActivity::class.java)
+                                intent.putExtra("idCliente", usuario.getInt("id"))
+                                startActivity(intent)
+                            }
                             else -> Toast.makeText(this@LoginActivity, "Rol no reconocido", Toast.LENGTH_SHORT).show()
                         }
                     }
